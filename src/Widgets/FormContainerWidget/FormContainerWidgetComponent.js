@@ -108,7 +108,16 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
 });
 
 async function submit(formElement, formEndpoint) {
-  const body = new URLSearchParams(new FormData(formElement));
+  const data = new FormData(formElement);
+  const dataToSend = new FormData();
+  for (const [name, value] of data) {
+    if (dataToSend.has(name)) {
+      continue;
+    } else {
+      dataToSend.set(name, data.getAll(name).join(", "));
+    }
+  }
+  const body = new URLSearchParams(dataToSend);
   // console.log("submitting", Object.fromEntries(body.entries()));
   const response = await fetch(formEndpoint, { method: "post", body });
   if (!response.ok) {

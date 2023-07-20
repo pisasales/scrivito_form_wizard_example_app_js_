@@ -2,8 +2,8 @@ import * as Scrivito from "scrivito";
 import formInputFieldWidgetIcon from "../../assets/images/form_input_field_widget.svg";
 import { isCustomType } from "../FormContainerWidget/utils/isCustomType";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
 import { typeValidation } from "../FormContainerWidget/utils/validations/typeValidation";
+import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 
 Scrivito.provideEditingConfig("FormInputFieldWidget", {
   title: "Form Input Field",
@@ -66,6 +66,6 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       },
     ],
     customFieldNameValidation,
-    insideFormContainerValidation,
+    insideFormOrStepContainerValidation,
   ],
 });
