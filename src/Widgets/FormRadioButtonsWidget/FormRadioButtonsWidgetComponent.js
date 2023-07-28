@@ -31,7 +31,7 @@ Scrivito.provideComponent("FormRadioButtonsWidget", ({ widget }) => {
           <FormRadioButtonWidget
             widget={widget}
             value={radio.get("text")}
-            id={createRadioId(radio)}
+            id={radio.id()}
             key={index}
           />
         ))}
@@ -40,9 +40,6 @@ Scrivito.provideComponent("FormRadioButtonsWidget", ({ widget }) => {
   );
 });
 
-const createRadioId = (radioButton) => {
-  return `form_radio_widget_${radioButton.id()}`;
-}
 
 const getHelpText = (widget) => {
   return (<OverlayTrigger

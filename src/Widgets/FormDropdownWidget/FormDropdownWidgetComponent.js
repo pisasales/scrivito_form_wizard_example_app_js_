@@ -29,12 +29,14 @@ Scrivito.provideComponent("FormDropdownWidget", ({ widget }) => {
           <FormDropdownOptionWidget
             widget={widget}
             value=""
+            id="empty-option"
           />
         }
         {options.map((option, index) => (
           <FormDropdownOptionWidget
             widget={widget}
             value={option.get("text")}
+            id={option.id()}
             key={index}
           />
         ))}
