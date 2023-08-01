@@ -6,6 +6,7 @@ import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidg
 import { FormDropdownOptionWidget } from "../FormDropdownOptionWidget/FormDropdownOptionWidgetClass";
 import { FormRadioButtonsWidget } from "../FormRadioButtonsWidget/FormRadioButtonsWidgetClass";
 import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetClass";
+import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 
 Scrivito.provideEditingConfig("FormTabContainerWidget", {
   title: "Form Tab Container",
@@ -25,7 +26,7 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
       title: "Tabs",
     }
   },
-  properties: ["headerType","title", "required", "tabs", "helpText"],
+  properties: ["headerType", "title", "required", "customFieldName", "tabs", "helpText"],
   initialContent: {
     headerType: "dropdown",
     title: "Select your vehicle type:",
@@ -81,7 +82,8 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
     ],
   },
   validations: [
-    insideFormOrStepContainerValidation
+    insideFormOrStepContainerValidation,
+    customFieldNameValidation
   ],
 });
 
