@@ -36,19 +36,19 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
 
   const onPageChange = (next) => {
     let isValid = true;
-    const formId = widget.get("formId")
+
     if (Scrivito.isInPlaceEditingActive()) {
       return;
     }
     if (next) {
-      isValid = validateCurrentStep(formId);
+      isValid = validateCurrentStep();
     }
     if (!isValid) {
       return;
     }
     const stepNumber = next ? Math.min(currentStep + 1, stepsLength) : Math.max(currentStep - 1, 1);
     setCurrentStepnumber(stepNumber);
-    const formElement = document.getElementById(formId);
+    const formElement = document.getElementById(widget.get("formId"));
     scrollIntoView(formElement);
   }
 
@@ -138,6 +138,10 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
 
   async function onSubmit() {
     if (Scrivito.isInPlaceEditingActive()) {
+      return;
+    }
+    const isValid = validateCurrentStep();
+    if (!isValid) {
       return;
     }
     const formElement = document.getElementById(widget.get("formId"));
