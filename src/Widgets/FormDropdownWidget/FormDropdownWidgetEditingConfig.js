@@ -6,24 +6,20 @@ Scrivito.provideEditingConfig("FormDropdownWidget", {
   title: "Form Dropdown",
   attributes: {
     options: {
-      title: "Options",
+      title: "Options"
     },
     title: { title: "Title" },
     customFieldName: { title: "Field name" },
     required: {
-      title: "Mandatory",
-      description: 'Enable "Add empty option" in order to work'
+      title: "Mandatory"
     },
-    emptyOption: {
-      title: "Add empty option",
-      description: "Add an empty option at the beginning. Needs to be enabled for mandatory check!"
-    },
-    helpText: { title: "Help text" },
+    helpText: { title: "Help text" }
   },
-  properties: ["title", "options", "customFieldName", "required", "emptyOption", "helpText"],
+  properties: ["title", "options", "customFieldName", "required", "helpText"],
   initialContent: {
     title: "Select",
-    customFieldName: "custom_"
+    customFieldName: "custom_",
+    options: ["A", "B", "C"]
   },
   validations: [
     [
@@ -32,8 +28,8 @@ Scrivito.provideEditingConfig("FormDropdownWidget", {
       (options) => {
         if (options.length < 2) {
           return {
-            message: "The widget must include at least two items.",
-            severity: "error",
+            message: "The widget must include at least two options.",
+            severity: "error"
           };
         }
       },

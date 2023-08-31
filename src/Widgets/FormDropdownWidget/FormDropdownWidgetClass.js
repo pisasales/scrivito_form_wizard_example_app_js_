@@ -5,10 +5,9 @@ export const FormDropdownWidget = Scrivito.provideWidgetClass(
   {
     attributes: {
       title: "string",
-      options: ["widgetlist", { only: "FormDropdownOptionWidget" }],
+      options: "stringlist",
       customFieldName: "string",
       required: "boolean",
-      emptyOption: "boolean",
       helpText: "html",
     },
   }

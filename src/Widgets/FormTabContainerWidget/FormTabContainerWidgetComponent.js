@@ -2,15 +2,15 @@ import * as React from "react";
 import * as Scrivito from "scrivito";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-import { FormDropdownOptionWidget } from "../FormDropdownOptionWidget/FormDropdownOptionWidgetComponent";
 import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetComponent";
+import { DropdownOption } from "../FormDropdownWidget/DropdownOption";
 import "./FormTabContainerWidget.scss";
 
 Scrivito.provideComponent("FormTabContainerWidget", ({ widget }) => {
   const [selectedTabId, setSelectedTabId] = React.useState("");
   const isDropdownHeader = widget.get("headerType") == "dropdown";
   const onChangeSelected = (e) => {
-    const selectedId = isDropdownHeader ? e.target.options[e.target.selectedIndex].dataset.id : e.target.dataset.id;
+    const selectedId = isDropdownHeader ? e.target.options[e.target.selectedIndex].id : e.target.dataset.id;
     setSelectedTabId(selectedId);
   }
 
@@ -53,16 +53,14 @@ const renderDropdownHeader = (widget, onChangeSelected) => {
       </label>
       <select name={getFieldName(widget)} id={widget.id()} required={widget.get("required")} onChange={onChangeSelected}>
         {
-          <FormDropdownOptionWidget
-            widget={widget}
-            value=""
-            id="empty-option"
+          <DropdownOption
+            value={""}
+            id={"empty-option"}
           />
         }
         {
           widget.get("tabs").map((tab, index) => (
-            <FormDropdownOptionWidget
-              widget={widget}
+            <DropdownOption
               value={tab.get("title")}
               id={tab.id()}
               key={index}

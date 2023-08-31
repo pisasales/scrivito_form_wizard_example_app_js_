@@ -4,9 +4,11 @@ import { Popover, OverlayTrigger } from "react-bootstrap";
 
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormDropdownWidget.scss";
+import { FormDropdownWidget } from "./FormDropdownWidgetClass"
+import { DropdownOption } from "./DropdownOption";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { FormDropdownOptionWidget } from "../FormDropdownOptionWidget/FormDropdownOptionWidgetComponent";
-Scrivito.provideComponent("FormDropdownWidget", ({ widget }) => {
+
+Scrivito.provideComponent(FormDropdownWidget, ({ widget }) => {
   const options = widget.get("options");
 
   if (!options.length) {
@@ -21,22 +23,21 @@ Scrivito.provideComponent("FormDropdownWidget", ({ widget }) => {
     <div className="mb-3 dropdown-container">
       <label htmlFor={widget.id()}>
         {widget.get("title")}
-        {widget.get("required") && getRequired()}
-        {widget.get("helpText") && getHelpText(widget)}
+        {widget.get("required") && RequiredPopOver()}
+        {widget.get("helpText") && HelpTextPopOver(widget)}
       </label>
       <select name={getFieldName(widget)} id={widget.id()} required={widget.get("required")}>
-        {widget.get("emptyOption") &&
-          <FormDropdownOptionWidget
-            widget={widget}
-            value=""
-            id="empty-option"
+        {
+          <DropdownOption
+            value={""}
+            id={"empty-option"}
+            key={"empty-option"}
           />
         }
         {options.map((option, index) => (
-          <FormDropdownOptionWidget
-            widget={widget}
-            value={option.get("text")}
-            id={option.id()}
+          <DropdownOption
+            value={option}
+            id={index}
             key={index}
           />
         ))}
@@ -45,7 +46,7 @@ Scrivito.provideComponent("FormDropdownWidget", ({ widget }) => {
   );
 });
 
-const getHelpText = (widget) => {
+const HelpTextPopOver = (widget) => {
   return (<OverlayTrigger
     placement="top"
     trigger="hover"
@@ -63,7 +64,7 @@ const getHelpText = (widget) => {
   </OverlayTrigger>);
 }
 
-const getRequired = () => {
+const RequiredPopOver = () => {
   return (
     <OverlayTrigger
       placement="top"

@@ -3,7 +3,6 @@ import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/v
 import { FormTabWidget } from "../FormTabWidget/FormTabWidgetClass";
 import { FormDropdownWidget } from "../FormDropdownWidget/FormDropdownWidgetClass";
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
-import { FormDropdownOptionWidget } from "../FormDropdownOptionWidget/FormDropdownOptionWidgetClass";
 import { FormRadioButtonsWidget } from "../FormRadioButtonsWidget/FormRadioButtonsWidgetClass";
 import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
@@ -38,9 +37,7 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
           title: "Select your car model",
           customFieldName: "custom_car_model",
           options: [
-            new FormDropdownOptionWidget({ text: "Audi" }),
-            new FormDropdownOptionWidget({ text: "BMW" }),
-            new FormDropdownOptionWidget({ text: "Porsche" }),
+            "Audi","BMW","Porsche"
           ]
         }),
         new FormRadioButtonsWidget({
@@ -62,12 +59,8 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
           title: "Select your boat type",
           customFieldName: "custom_boat_type",
           options: [
-            new FormDropdownOptionWidget({ text: "Canoe" }),
-            new FormDropdownOptionWidget({ text: "Fishing vessel" }),
-            new FormDropdownOptionWidget({ text: "Schooner" }),
-            new FormDropdownOptionWidget({ text: "Yacht" })
+            "Canoe", "Fishing vessel", "Schooner", "Yacht"
           ],
-          emptyOption: true
         }),
         new FormInputFieldWidget({
           label: "Please describe your boat",
