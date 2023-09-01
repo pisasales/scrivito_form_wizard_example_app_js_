@@ -5,7 +5,6 @@ import { getFormWizardContainer } from "./utils/getFormWizardContainer";
 import { getFormContainer } from "../FormContainerWidget/utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
 import { FormMultiSelectWidget } from "../FormMultiSelectWidget/FormMultiSelectWidgetClass";
-import { FormSingleSelectWidget } from "../FormSingleSelectWidget/FormSingleSelectWidgetClass";
 import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 
 Scrivito.provideEditingConfig("FormWizardWidget", {
@@ -68,7 +67,7 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
     steps: [
       new FormStepWidget({
         questions: [
-          new FormMultiSelectWidget({ title: "Please choose", checkboxes: [new FormSingleSelectWidget({ text: "Car" }), new FormSingleSelectWidget({ text: "Boat" })], customFieldName: "custom_please_choose" })
+          new FormMultiSelectWidget({ title: "Please choose", checkboxes: ["Car", "Boat"], customFieldName: "custom_please_choose" })
         ]
       }),
       new FormStepWidget({

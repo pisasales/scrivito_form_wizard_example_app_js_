@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormMultiSelectWidget.scss";
-import { FormSingleSelectWidget } from "../FormSingleSelectWidget/FormSingleSelectWidgetComponent";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
+import { MultiSelectCheckbox } from "./MultiSelectCheckbox";
 
 Scrivito.provideComponent("FormMultiSelectWidget", ({ widget }) => {
   const checkboxes = widget.get("checkboxes");
@@ -13,7 +12,7 @@ Scrivito.provideComponent("FormMultiSelectWidget", ({ widget }) => {
   if (!checkboxes.length) {
     return (
       <InPlaceEditingPlaceholder center>
-        Select some checkboxes in the widget properties.
+        Add some checkboxes in the widget properties.
       </InPlaceEditingPlaceholder>
     );
   }
@@ -22,15 +21,14 @@ Scrivito.provideComponent("FormMultiSelectWidget", ({ widget }) => {
     <div className="form-multi-select mb-3">
       <div className="multi-select-title">
         <p>{widget.get("title")}
-          {widget.get("helpText") && getHelpText(widget)}
+          {widget.get("helpText") && HelpTextPopOver(widget)}
         </p>
       </div>
       <div className="row">
-        {checkboxes.map((checkbox, index) => (
-          <FormSingleSelectWidget
+        {checkboxes.map((checkboxValue, index) => (
+          <MultiSelectCheckbox
             name={getFieldName(widget)}
-            value={checkbox.get("text")}
-            id={createCheckboxId(checkbox)}
+            value={checkboxValue}
             key={index}
           />
         ))}
@@ -39,7 +37,7 @@ Scrivito.provideComponent("FormMultiSelectWidget", ({ widget }) => {
   );
 });
 
-const getHelpText = (widget) => {
+const HelpTextPopOver = (widget) => {
   return (<OverlayTrigger
     placement="top"
     trigger="hover"
@@ -55,8 +53,4 @@ const getHelpText = (widget) => {
   >
     <i className="fa fa-question-circle-o fa-1x ml-1"></i>
   </OverlayTrigger>)
-}
-
-const createCheckboxId = (checkbox) => {
-  return `form_checkbox_widget_${checkbox.id()}`;
 }

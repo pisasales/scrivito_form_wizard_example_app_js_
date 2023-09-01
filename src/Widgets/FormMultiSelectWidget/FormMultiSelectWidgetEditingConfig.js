@@ -1,5 +1,4 @@
 import * as Scrivito from "scrivito";
-import { FormSingleSelectWidget } from "../FormSingleSelectWidget/FormSingleSelectWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 
@@ -18,8 +17,7 @@ Scrivito.provideEditingConfig("FormMultiSelectWidget", {
   initialContent: {
     title: "Please choose:",
     checkboxes: [
-      new FormSingleSelectWidget({ text: "Car" }),
-      new FormSingleSelectWidget({ text: "Boat" })
+      "Car", "Boat"
     ],
     customFieldName: "custom_"
   },

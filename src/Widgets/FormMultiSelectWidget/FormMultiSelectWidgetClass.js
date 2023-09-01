@@ -5,7 +5,7 @@ export const FormMultiSelectWidget = Scrivito.provideWidgetClass(
   {
     attributes: {
       title: "string",
-      checkboxes: ["widgetlist", { only: "FormSingleSelectWidget" }],
+      checkboxes: "stringlist",
       helpText: "html",
       customFieldName: "string",
     },
