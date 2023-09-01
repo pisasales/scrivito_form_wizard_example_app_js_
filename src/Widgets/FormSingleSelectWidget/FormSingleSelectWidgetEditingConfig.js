@@ -1,13 +1,12 @@
 import * as Scrivito from "scrivito";
-import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 
-Scrivito.provideEditingConfig("FormRadioButtonsWidget", {
-  title: "Form Radio-buttons",
+Scrivito.provideEditingConfig("FormSingleSelectWidget", {
+  title: "Form Single Select",
   attributes: {
     radios: {
-      title: "RADIO BUTTONS",
+      title: "Radio buttons",
     },
     title: { title: "Title" },
     customFieldName: { title: "Field name" },
@@ -18,9 +17,7 @@ Scrivito.provideEditingConfig("FormRadioButtonsWidget", {
   initialContent: {
     title: "Would you like to subscribe?",
     radios: [
-      new FormRadioButtonWidget({ text: "Yes" }),
-      new FormRadioButtonWidget({ text: "No" }),
-      new FormRadioButtonWidget({ text: "Maybe" })
+      "Yes", "No", "Maybe"
     ],
     customFieldName: "custom_"
   },

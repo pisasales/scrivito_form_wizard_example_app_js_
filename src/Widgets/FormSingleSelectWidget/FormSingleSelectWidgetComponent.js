@@ -1,37 +1,37 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
-import "./FormRadioButtonsWidget.scss";
-import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetComponent";
+import "./FormSingleSelectWidget.scss";
+import { SingleRadioButton } from "./SingleRadioButton";
+import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 
-Scrivito.provideComponent("FormRadioButtonsWidget", ({ widget }) => {
+Scrivito.provideComponent("FormSingleSelectWidget", ({ widget }) => {
   const radios = widget.get("radios");
 
   if (!radios.length) {
     return (
       <InPlaceEditingPlaceholder center>
-        Select radio buttons in the widget properties.
+        Add radio buttons in the widget properties.
       </InPlaceEditingPlaceholder>
     );
   }
 
   return (
-    <div className="form-radio mb-3">
-      <div className="radio-title">
+    <div className="form-single-select mb-3">
+      <div className="single-select-title">
         <p>{widget.get("title")}
-          {widget.get("required") && getRequired()}
-          {widget.get("helpText") && getHelpText(widget)}
+          {widget.get("required") && RequiredPopOver()}
+          {widget.get("helpText") && HelpTextPopOver(widget)}
         </p>
       </div>
 
       <div className="row">
-        {radios.map((radio, index) => (
-          <FormRadioButtonWidget
-            widget={widget}
-            value={radio.get("text")}
-            id={radio.id()}
+        {radios.map((radioValue, index) => (
+          <SingleRadioButton
+            name={getFieldName(widget)}
+            value={radioValue}
+            required={widget.get("required")}
             key={index}
           />
         ))}
@@ -41,7 +41,7 @@ Scrivito.provideComponent("FormRadioButtonsWidget", ({ widget }) => {
 });
 
 
-const getHelpText = (widget) => {
+const HelpTextPopOver = (widget) => {
   return (<OverlayTrigger
     placement="top"
     trigger="hover"
@@ -59,7 +59,7 @@ const getHelpText = (widget) => {
   </OverlayTrigger>)
 }
 
-const getRequired = () => {
+const RequiredPopOver = () => {
   return (
     <OverlayTrigger
       placement="top"

@@ -1,11 +1,11 @@
 import * as Scrivito from "scrivito";
 
-export const FormRadioButtonsWidget = Scrivito.provideWidgetClass(
-  "FormRadioButtonsWidget",
+export const FormSingleSelectWidget = Scrivito.provideWidgetClass(
+  "FormSingleSelectWidget",
   {
     attributes: {
       title: "string",
-      radios: ["widgetlist", { only: "FormRadioButtonWidget" }],
+      radios: "stringlist",
       customFieldName: "string",
       required: "boolean",
       helpText: "html",

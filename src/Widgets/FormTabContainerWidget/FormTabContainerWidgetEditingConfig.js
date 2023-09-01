@@ -3,8 +3,7 @@ import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/v
 import { FormTabWidget } from "../FormTabWidget/FormTabWidgetClass";
 import { FormDropdownWidget } from "../FormDropdownWidget/FormDropdownWidgetClass";
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
-import { FormRadioButtonsWidget } from "../FormRadioButtonsWidget/FormRadioButtonsWidgetClass";
-import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetClass";
+import { FormSingleSelectWidget } from "../FormSingleSelectWidget/FormSingleSelectWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 
 Scrivito.provideEditingConfig("FormTabContainerWidget", {
@@ -37,17 +36,15 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
           title: "Select your car model",
           customFieldName: "custom_car_model",
           options: [
-            "Audi","BMW","Porsche"
+            "Audi", "BMW", "Porsche"
           ]
         }),
-        new FormRadioButtonsWidget({
+        new FormSingleSelectWidget({
           title: "Do you have a valid driving license?",
           customFieldName: "custom_has_license",
-          required:true,
+          required: true,
           radios: [
-            new FormRadioButtonWidget({ text: "Yes" }),
-            new FormRadioButtonWidget({ text: "No" }),
-            new FormRadioButtonWidget({ text: "Not sure" })
+            "Yes", "No", "Not sure"
           ]
         })
       ]
@@ -67,7 +64,7 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
           type: "custom",
           customType: "multi_line",
           customFieldName: "custom_boat_description",
-          placeholder:"",
+          placeholder: "",
           required: true
         })
       ]

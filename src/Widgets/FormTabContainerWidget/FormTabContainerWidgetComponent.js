@@ -2,15 +2,15 @@ import * as React from "react";
 import * as Scrivito from "scrivito";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-import { FormRadioButtonWidget } from "../FormRadioButtonWidget/FormRadioButtonWidgetComponent";
 import { DropdownOption } from "../FormDropdownWidget/DropdownOption";
 import "./FormTabContainerWidget.scss";
+import { SingleRadioButton } from "../FormSingleSelectWidget/SingleRadioButton";
 
 Scrivito.provideComponent("FormTabContainerWidget", ({ widget }) => {
   const [selectedTabId, setSelectedTabId] = React.useState("");
   const isDropdownHeader = widget.get("headerType") == "dropdown";
   const onChangeSelected = (e) => {
-    const selectedId = isDropdownHeader ? e.target.options[e.target.selectedIndex].id : e.target.dataset.id;
+    const selectedId = isDropdownHeader ? e.target.options[e.target.selectedIndex].id : e.target.id;
     setSelectedTabId(selectedId);
   }
 
@@ -86,11 +86,12 @@ const renderRadioButtonsHeader = (widget, onChangeSelected) => {
 
       <div className="row ">
         {widget.get("tabs").map((tab, index) => (
-          <FormRadioButtonWidget
-            widget={widget}
+          <SingleRadioButton
+            name={getFieldName(widget)}
             onChange={onChangeSelected}
             value={tab.get("title")}
             id={tab.id()}
+            required={widget.get("required")}
             key={index}
           />
         ))}
