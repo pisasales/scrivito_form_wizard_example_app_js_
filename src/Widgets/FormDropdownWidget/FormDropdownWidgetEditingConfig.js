@@ -28,7 +28,7 @@ Scrivito.provideEditingConfig("FormDropdownWidget", {
       (options) => {
         if (options.length < 2) {
           return {
-            message: "The widget must include at least two options.",
+            message: "The widget must include at least two items.",
             severity: "error"
           };
         }
