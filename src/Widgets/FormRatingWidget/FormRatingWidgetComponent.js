@@ -12,7 +12,7 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
     <div className="form-rating mb-3">
       <div className="rating-title">
         <p>{widget.get("title")}
-          {widget.get("helpText") && getHelpText(widget)}
+          {widget.get("helpText") && HelpTextPopOver(widget)}
         </p>
       </div>
       {createArray(5).map((n, i) => (
@@ -30,7 +30,7 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
 });
 
 
-const getHelpText = (widget) => {
+const HelpTextPopOver = (widget) => {
   return (<OverlayTrigger
     placement="top"
     trigger="hover"
