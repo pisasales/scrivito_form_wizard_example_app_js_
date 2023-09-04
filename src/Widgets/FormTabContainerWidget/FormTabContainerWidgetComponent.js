@@ -4,7 +4,7 @@ import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import { DropdownOption } from "../FormDropdownWidget/DropdownOption";
 import "./FormTabContainerWidget.scss";
-import { SingleRadioButton } from "../FormSingleSelectWidget/SingleRadioButton";
+import { Select } from "../FormSelectWidget/SelectComponent";
 
 Scrivito.provideComponent("FormTabContainerWidget", ({ widget }) => {
   const [selectedTabId, setSelectedTabId] = React.useState("");
@@ -77,7 +77,7 @@ const renderRadioButtonsHeader = (widget, onChangeSelected) => {
   return (
 
     <div className={getClassNames(widget)}>
-      <div className="radio-title">
+      <div className="select-title">
         <p>{widget.get("title")}
           {widget.get("required") && getRequired()}
           {widget.get("helpText") && getHelpText(widget)}
@@ -86,7 +86,8 @@ const renderRadioButtonsHeader = (widget, onChangeSelected) => {
 
       <div className="row ">
         {widget.get("tabs").map((tab, index) => (
-          <SingleRadioButton
+          <Select
+            selectionType={"single"}
             name={getFieldName(widget)}
             onChange={onChangeSelected}
             value={tab.get("title")}
@@ -103,7 +104,7 @@ const renderRadioButtonsHeader = (widget, onChangeSelected) => {
 
 const getClassNames = (widget) => {
   let classNames = "mb-3 ";
-  classNames += widget.get("headerType") == "dropdown" ? "dropdown-container " : "form-radio";
+  classNames += widget.get("headerType") == "dropdown" ? "dropdown-container " : "select-container";
   if (Scrivito.isInPlaceEditingActive()) {
     classNames += " condition-wrapper";
   }

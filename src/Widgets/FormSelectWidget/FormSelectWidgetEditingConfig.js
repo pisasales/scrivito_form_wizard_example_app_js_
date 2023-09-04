@@ -2,31 +2,43 @@ import * as Scrivito from "scrivito";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 
-Scrivito.provideEditingConfig("FormSingleSelectWidget", {
-  title: "Form Single Select",
+Scrivito.provideEditingConfig("FormSelectWidget", {
+  title: "Form Select",
   attributes: {
-    radios: {
-      title: "Radio buttons",
+    selectionType: {
+      title: "Input type",
+      values: [
+        { value: "multi", title: "Multi select" },
+        { value: "single", title: "Single select" }
+      ],
+    },
+    items: {
+      title: "Items",
     },
     title: { title: "Title" },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },
   },
-  properties: ["title", "radios", "customFieldName", "required", "helpText"],
+  properties: (obj) => [
+    'selectionType',"title", "items", "customFieldName",
+    ['required', { enabled: obj.get('selectionType') === 'single' }],
+    "helpText"
+  ],
   initialContent: {
+    selectionType: "single",
     title: "Would you like to subscribe?",
-    radios: [
+    items: [
       "Yes", "No", "Maybe"
     ],
     customFieldName: "custom_"
   },
   validations: [
     [
-      "radios",
+      "items",
 
-      (radios) => {
-        if (radios.length < 2) {
+      (items) => {
+        if (items.length < 2) {
           return {
             message: "The widget must include at least two items.",
             severity: "error",

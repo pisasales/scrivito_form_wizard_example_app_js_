@@ -3,7 +3,7 @@ import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/v
 import { FormTabWidget } from "../FormTabWidget/FormTabWidgetClass";
 import { FormDropdownWidget } from "../FormDropdownWidget/FormDropdownWidgetClass";
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
-import { FormSingleSelectWidget } from "../FormSingleSelectWidget/FormSingleSelectWidgetClass";
+import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 
 Scrivito.provideEditingConfig("FormTabContainerWidget", {
@@ -39,11 +39,12 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
             "Audi", "BMW", "Porsche"
           ]
         }),
-        new FormSingleSelectWidget({
+        new FormSelectWidget({
+          selectionType: "single",
           title: "Do you have a valid driving license?",
           customFieldName: "custom_has_license",
           required: true,
-          radios: [
+          items: [
             "Yes", "No", "Not sure"
           ]
         })

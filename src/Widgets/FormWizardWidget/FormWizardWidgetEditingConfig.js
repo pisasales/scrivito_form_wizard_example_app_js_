@@ -4,7 +4,7 @@ import { pseudoRandom32CharHex } from "../FormContainerWidget/utils/pseudoRandom
 import { getFormWizardContainer } from "./utils/getFormWizardContainer";
 import { getFormContainer } from "../FormContainerWidget/utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
-import { FormMultiSelectWidget } from "../FormMultiSelectWidget/FormMultiSelectWidgetClass";
+import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 
 Scrivito.provideEditingConfig("FormWizardWidget", {
@@ -67,7 +67,7 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
     steps: [
       new FormStepWidget({
         questions: [
-          new FormMultiSelectWidget({ title: "Please choose", checkboxes: ["Car", "Boat"], customFieldName: "custom_please_choose" })
+          new FormSelectWidget({ title: "Please choose", items: ["Car", "Boat"], selectionType: "multi", customFieldName: "custom_please_choose" })
         ]
       }),
       new FormStepWidget({
