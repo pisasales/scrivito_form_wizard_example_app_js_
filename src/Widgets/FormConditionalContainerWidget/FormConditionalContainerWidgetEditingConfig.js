@@ -1,15 +1,15 @@
 import * as Scrivito from "scrivito";
 import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
-import { FormTabWidget } from "../FormTabWidget/FormTabWidgetClass";
+import { FormConditionWidget } from "../FormConditionWidget/FormConditionWidgetClass";
 import { FormDropdownWidget } from "../FormDropdownWidget/FormDropdownWidgetClass";
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
 import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 
-Scrivito.provideEditingConfig("FormTabContainerWidget", {
-  title: "Form Tab Container",
+Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
+  title: "Form Conditional Container",
   titleForContent(obj) {
-    return  "Tab Container for: " + obj.get("title");
+    return  "Container for: " + obj.get("title");
   },
   attributes: {
     headerType: {
@@ -23,16 +23,16 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },
-    tabs: {
-      title: "Tabs",
+    conditions: {
+      title: "Conditions",
     }
   },
-  properties: ["headerType", "title", "required", "customFieldName", "tabs", "helpText"],
+  properties: ["headerType", "title", "required", "customFieldName", "conditions", "helpText"],
   initialContent: {
     headerType: "dropdown",
     title: "Select your vehicle type:",
     customFieldName: "custom_vehicle_selection",
-    tabs: [new FormTabWidget({
+    conditions: [new FormConditionWidget({
       title: "Car",
       content: [
         new FormDropdownWidget({
@@ -53,7 +53,7 @@ Scrivito.provideEditingConfig("FormTabContainerWidget", {
         })
       ]
     }),
-    new FormTabWidget({
+    new FormConditionWidget({
       title: "Boat",
       content: [
         new FormDropdownWidget({

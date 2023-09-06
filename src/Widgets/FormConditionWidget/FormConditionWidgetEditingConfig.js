@@ -1,10 +1,10 @@
 import * as Scrivito from "scrivito";
 import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 
-Scrivito.provideEditingConfig("FormTabWidget", {
-  title: "Form Tab",
+Scrivito.provideEditingConfig("FormConditionWidget", {
+  title: "Form Condition",
   titleForContent(obj) {
-    return "Tab: " + obj.get("title");
+    return "Condition: " + obj.get("title");
   },
   attributes: {
     title: { title: "Title" },

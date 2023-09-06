@@ -1,9 +1,8 @@
 import * as Scrivito from "scrivito";
 
-export const FormTabContainerWidget = Scrivito.provideWidgetClass(
-  "FormTabContainerWidget",
+export const FormConditionalContainerWidget = Scrivito.provideWidgetClass(
+  "FormConditionalContainerWidget",
   {
-   // onlyInside: ["FormContainerWidget","FormStepWidget","FormTabWidget"],
     attributes: {
        headerType: [
         "enum",
@@ -16,7 +15,7 @@ export const FormTabContainerWidget = Scrivito.provideWidgetClass(
       ],
       title:"string",
       customFieldName: "string",
-      tabs: ["widgetlist", { only: "FormTabWidget" }],
+      conditions: ["widgetlist", { only: "FormConditionWidget" }],
       required: "boolean",
       helpText: "html",
     },

@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
-import "./FormTabWidget.scss";
+import "./FormConditionWidget.scss";
 
-Scrivito.provideComponent("FormTabWidget", ({ widget, getData }) => {
+Scrivito.provideComponent("FormConditionWidget", ({ widget, getData }) => {
   const data = getData ? getData(widget.id()) : { isActive: false };
   
   if (!data.isActive && !Scrivito.isInPlaceEditingActive()) {
@@ -21,7 +21,7 @@ Scrivito.provideComponent("FormTabWidget", ({ widget, getData }) => {
   return (
     <>
       {Scrivito.isInPlaceEditingActive() &&
-        <span className="tab-info">{"Tab: " + widget.get("title")}</span>
+        <span className="condition-info">{"Tab: " + widget.get("title")}</span>
       }
       {
         (widget.get("content") && widget.get("content").length > 0)

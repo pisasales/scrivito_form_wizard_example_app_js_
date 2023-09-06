@@ -5,7 +5,7 @@ import { Popover, OverlayTrigger } from "react-bootstrap";
 import { DropdownOption } from "../FormDropdownWidget/DropdownOption";
 import { Select } from "../FormSelectWidget/SelectComponent";
 
-export const TabHeader = ({ widget, onChangeSelected }) => {
+export const ConditionalHeader = ({ widget, onChangeSelected }) => {
     const isDropdownHeader = widget.get("headerType") == "dropdown";
 
     return (
@@ -49,10 +49,10 @@ const DropdownHeader = Scrivito.connect(({ widget, onChangeSelected }) => {
             <select name={getFieldName(widget)} id={widget.id()} required={widget.get("required")} onChange={onChangeSelected}>
                 <EmptyOption />
                 {
-                    widget.get("tabs").map((tab, index) => (
+                    widget.get("conditions").map((condition, index) => (
                         <DropdownOption
-                            value={tab.get("title")}
-                            id={tab.id()}
+                            value={condition.get("title")}
+                            id={condition.id()}
                             key={index}
                         />
                     ))
@@ -78,13 +78,13 @@ const RadioButtonsHeader = Scrivito.connect(({ widget, onChangeSelected }) => {
             </div>
 
             <div className="row ">
-                {widget.get("tabs").map((tab, index) => (
+                {widget.get("conditions").map((condition, index) => (
                     <Select
                         selectionType={"single"}
                         name={getFieldName(widget)}
                         onChange={onChangeSelected}
-                        value={tab.get("title")}
-                        id={tab.id()}
+                        value={condition.get("title")}
+                        id={condition.id()}
                         required={widget.get("required")}
                         key={index}
                     />
