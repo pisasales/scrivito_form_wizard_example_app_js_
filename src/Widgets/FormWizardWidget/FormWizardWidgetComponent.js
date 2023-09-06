@@ -11,7 +11,7 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
-  const [currentStep, setCurrentStepnumber] = React.useState(1);
+  const [currentStep, setCurrentStepNumber] = React.useState(1);
   const [browserLocation, setBrowserLocation] = React.useState(null);
   const stepsLength = widget.get("steps").length;
   const isLastPage = currentStep == stepsLength;
@@ -47,7 +47,7 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
       return;
     }
     const stepNumber = next ? Math.min(currentStep + 1, stepsLength) : Math.max(currentStep - 1, 1);
-    setCurrentStepnumber(stepNumber);
+    setCurrentStepNumber(stepNumber);
     const formElement = document.getElementById(widget.get("formId"));
     scrollIntoView(formElement);
   }

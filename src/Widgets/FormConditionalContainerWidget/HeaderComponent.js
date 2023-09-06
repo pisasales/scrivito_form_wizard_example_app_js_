@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { Popover, OverlayTrigger } from "react-bootstrap";
 import { DropdownOption } from "../FormDropdownWidget/DropdownOption";
 import { Select } from "../FormSelectWidget/SelectComponent";
+import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
+import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
 
 export const ConditionalHeader = ({ widget, onChangeSelected }) => {
     const isDropdownHeader = widget.get("headerType") == "dropdown";
@@ -43,8 +44,8 @@ const DropdownHeader = Scrivito.connect(({ widget, onChangeSelected }) => {
         <div className={getClassNames(widget)}>
             <label htmlFor={widget.id()}>
                 {widget.get("title")}
-                {widget.get("required") && <RequiredPopOver />}
-                {widget.get("helpText") && <HelpTextPopOver widget={widget} />}
+                {widget.get("required") && <Mandatory />}
+                {widget.get("helpText") && <HelpText widget={widget} />}
             </label>
             <select name={getFieldName(widget)} id={widget.id()} required={widget.get("required")} onChange={onChangeSelected}>
                 <EmptyOption />
@@ -69,11 +70,8 @@ const RadioButtonsHeader = Scrivito.connect(({ widget, onChangeSelected }) => {
         <div className={getClassNames(widget)}>
             <div className="select-title">
                 <p>{widget.get("title")}
-                    {widget.get("required") && <RequiredPopOver />}
-                    {widget.get("helpText") && <HelpTextPopOver
-                        widget={widget}
-                    />
-                    }
+                    {widget.get("required") && <Mandatory />}
+                    {widget.get("helpText") && <HelpText widget={widget} />}
                 </p>
             </div>
 
@@ -102,38 +100,4 @@ const getClassNames = (widget) => {
         classNames += " condition-wrapper";
     }
     return classNames;
-}
-
-const HelpTextPopOver = (widget) => {
-    return (<OverlayTrigger
-        placement="top"
-        trigger="hover"
-        overlay={
-            <Popover>
-                <Popover.Body>
-                    <Scrivito.InPlaceEditingOff>
-                        <Scrivito.ContentTag content={widget} attribute="helpText" />
-                    </Scrivito.InPlaceEditingOff>
-                </Popover.Body>
-            </Popover>
-        }
-    >
-        <i className="fa fa-question-circle-o fa-1x ml-1"></i>
-    </OverlayTrigger>);
-}
-
-const RequiredPopOver = () => {
-    return (
-        <OverlayTrigger
-            placement="top"
-            trigger="hover"
-            overlay={
-                <Popover>
-                    <Popover.Body>mandatory</Popover.Body>
-                </Popover>
-            }
-        >
-            <span className="text-mandatory">*</span>
-        </OverlayTrigger>
-    );
 }

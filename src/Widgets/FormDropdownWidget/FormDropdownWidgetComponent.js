@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { Popover, OverlayTrigger } from "react-bootstrap";
-
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormDropdownWidget.scss";
 import { FormDropdownWidget } from "./FormDropdownWidgetClass"
 import { DropdownOption } from "./DropdownOption";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
+import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
+import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
 
 Scrivito.provideComponent(FormDropdownWidget, ({ widget }) => {
   const options = widget.get("options");
@@ -23,8 +23,8 @@ Scrivito.provideComponent(FormDropdownWidget, ({ widget }) => {
     <div className="mb-3 dropdown-container">
       <label htmlFor={widget.id()}>
         {widget.get("title")}
-        {widget.get("required") && RequiredPopOver()}
-        {widget.get("helpText") && HelpTextPopOver(widget)}
+        {widget.get("required") && <Mandatory/>}
+        {widget.get("helpText") && <HelpText widget={widget} />}
       </label>
       <select name={getFieldName(widget)} id={widget.id()} required={widget.get("required")}>
         {
@@ -45,37 +45,3 @@ Scrivito.provideComponent(FormDropdownWidget, ({ widget }) => {
     </div>
   );
 });
-
-const HelpTextPopOver = (widget) => {
-  return (<OverlayTrigger
-    placement="top"
-    trigger="hover"
-    overlay={
-      <Popover>
-        <Popover.Body>
-          <Scrivito.InPlaceEditingOff>
-            <Scrivito.ContentTag content={widget} attribute="helpText" />
-          </Scrivito.InPlaceEditingOff>
-        </Popover.Body>
-      </Popover>
-    }
-  >
-    <i className="fa fa-question-circle-o fa-1x ml-1"></i>
-  </OverlayTrigger>);
-}
-
-const RequiredPopOver = () => {
-  return (
-    <OverlayTrigger
-      placement="top"
-      trigger="hover"
-      overlay={
-        <Popover>
-          <Popover.Body>mandatory</Popover.Body>
-        </Popover>
-      }
-    >
-      <span className="text-mandatory">*</span>
-    </OverlayTrigger>
-  );
-}

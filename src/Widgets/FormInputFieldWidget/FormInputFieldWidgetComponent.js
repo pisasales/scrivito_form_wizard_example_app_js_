@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { Popover, OverlayTrigger } from "react-bootstrap";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { isCustomType } from "../FormContainerWidget/utils/isCustomType";
+import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
+import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
 
 Scrivito.provideComponent("FormInputFieldWidget", ({ widget }) => {
   const id = `form_text_input_widget_${widget.id()}`;
@@ -22,37 +23,9 @@ Scrivito.provideComponent("FormInputFieldWidget", ({ widget }) => {
         className="form-label"
         {...labelOptions}
       />
-      {widget.get("required") ? (
-        <OverlayTrigger
-          placement="top"
-          trigger="hover"
-          overlay={
-            <Popover>
-              <Popover.Body>mandatory</Popover.Body>
-            </Popover>
-          }
-        >
-          <span className="text-mandatory">*</span>
-        </OverlayTrigger>
-      ) : null}
+      {widget.get("required") && <Mandatory />}
 
-      {widget.get("helpText") ? (
-        <OverlayTrigger
-          placement="top"
-          trigger="hover"
-          overlay={
-            <Popover>
-              <Popover.Body>
-                <Scrivito.InPlaceEditingOff>
-                  <Scrivito.ContentTag content={widget} attribute="helpText" />
-                </Scrivito.InPlaceEditingOff>
-              </Popover.Body>
-            </Popover>
-          }
-        >
-          <i className="fa fa-question-circle-o fa-1x ml-1"></i>
-        </OverlayTrigger>
-      ) : null}
+      {widget.get("helpText") && <HelpText widget={widget}/>}
 
       {isCustomType(widget) && widget.get("customType") === "multi_line" ? (
         <textarea

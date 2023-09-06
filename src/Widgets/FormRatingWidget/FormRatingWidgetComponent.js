@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { Popover, OverlayTrigger } from "react-bootstrap";
 import "./FormRatingWidget.scss";
 import { Star } from "./StarComponent"
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
+import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
 
 Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
   const [selectedStars, setSelectedStars] = React.useState(0);
@@ -12,7 +12,7 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
     <div className="form-rating mb-3">
       <div className="rating-title">
         <p>{widget.get("title")}
-          {widget.get("helpText") && HelpTextPopOver(widget)}
+          {widget.get("helpText") && <HelpText widget={widget} />}
         </p>
       </div>
       {createArray(5).map((n, i) => (
@@ -28,24 +28,5 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
   );
 
 });
-
-
-const HelpTextPopOver = (widget) => {
-  return (<OverlayTrigger
-    placement="top"
-    trigger="hover"
-    overlay={
-      <Popover>
-        <Popover.Body>
-          <Scrivito.InPlaceEditingOff>
-            <Scrivito.ContentTag content={widget} attribute="helpText" />
-          </Scrivito.InPlaceEditingOff>
-        </Popover.Body>
-      </Popover>
-    }
-  >
-    <i className="fa fa-question-circle-o fa-1x ml-1"></i>
-  </OverlayTrigger>)
-}
 
 const createArray = length => [...Array(length)];
