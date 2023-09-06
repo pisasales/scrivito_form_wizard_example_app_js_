@@ -3,6 +3,9 @@ import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/v
 
 Scrivito.provideEditingConfig("FormTabWidget", {
   title: "Form Tab",
+  titleForContent(obj) {
+    return "Tab: " + obj.get("title");
+  },
   attributes: {
     title: { title: "Title" },
     content: { title: "Content" },

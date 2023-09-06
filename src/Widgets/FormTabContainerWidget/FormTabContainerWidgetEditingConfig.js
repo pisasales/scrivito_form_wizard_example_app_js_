@@ -8,6 +8,9 @@ import { customFieldNameValidation } from "../FormContainerWidget/utils/validati
 
 Scrivito.provideEditingConfig("FormTabContainerWidget", {
   title: "Form Tab Container",
+  titleForContent(obj) {
+    return  "Tab Container for: " + obj.get("title");
+  },
   attributes: {
     headerType: {
       title: "Input type",
