@@ -1,7 +1,6 @@
 import * as Scrivito from "scrivito";
 import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 import { FormConditionWidget } from "../FormConditionWidget/FormConditionWidgetClass";
-import { FormDropdownWidget } from "../FormDropdownWidget/FormDropdownWidgetClass";
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
 import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
@@ -35,15 +34,16 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
     conditions: [new FormConditionWidget({
       title: "Car",
       content: [
-        new FormDropdownWidget({
+        new FormSelectWidget({
           title: "Select your car model",
           customFieldName: "custom_car_model",
-          options: [
+          items: [
             "Audi", "BMW", "Porsche"
-          ]
+          ],
+          selectionType: "dropdown"
         }),
         new FormSelectWidget({
-          selectionType: "single",
+          selectionType: "radio",
           title: "Do you have a valid driving license?",
           customFieldName: "custom_has_license",
           required: true,
@@ -56,12 +56,13 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
     new FormConditionWidget({
       title: "Boat",
       content: [
-        new FormDropdownWidget({
+        new FormSelectWidget({
           title: "Select your boat type",
           customFieldName: "custom_boat_type",
-          options: [
+          items: [
             "Canoe", "Fishing vessel", "Schooner", "Yacht"
           ],
+          selectionType: "dropdown"
         }),
         new FormInputFieldWidget({
           label: "Please describe your boat",

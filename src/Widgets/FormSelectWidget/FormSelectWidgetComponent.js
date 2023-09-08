@@ -6,10 +6,12 @@ import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { Select } from "./SelectComponent";
 import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
 import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
+import { Dropdown } from "./SelectDropdownComponent";
 
 Scrivito.provideComponent("FormSelectWidget", ({ widget }) => {
   const items = widget.get("items");
-  const isSingleSelect = widget.get("selectionType") == "single";
+  const isMultiSelect = widget.get("selectionType") == "multi";
+  const isDropdown = widget.get("selectionType") == "dropdown";
   if (!items.length) {
     return (
       <InPlaceEditingPlaceholder center>
@@ -21,23 +23,25 @@ Scrivito.provideComponent("FormSelectWidget", ({ widget }) => {
   return (
     <div className="select-container mb-3">
       <div className="select-title">
-        <p>{widget.get("title")}
-          {(isSingleSelect && widget.get("required")) && <Mandatory />}
-          {widget.get("helpText") && <HelpText widget={widget} />}
-        </p>
+        <span> {widget.get("title")} </span>
+        {(!isMultiSelect && widget.get("required")) && <Mandatory />}
+        {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
-
-      <div className="row">
-        {items.map((itemValue, index) => (
-          <Select
-            selectionType={isSingleSelect ? "single" : "multi"}
-            name={getFieldName(widget)}
-            value={itemValue}
-            required={widget.get("required")}
-            key={index}
-          />
-        ))}
-      </div>
+      {isDropdown ?
+        <Dropdown
+          id={widget.id()}
+          name={getFieldName(widget)}
+          options={items}
+          required={widget.get("required")}
+        />
+        :
+        <Select
+          isMultiSelect={isMultiSelect}
+          items={widget.get("items")}
+          required={widget.get("required")}
+          name={getFieldName(widget)}
+        />
+      }
     </div>
   );
 });

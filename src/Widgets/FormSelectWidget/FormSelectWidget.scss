@@ -1,12 +1,10 @@
 .select-container {
-    .select-title {
-        p {
-            margin: 0;
-        }
-    }
-    label {
+    .select-label {
         span {
             margin-left: 0.4em;
         }
+    }
+    .dropdown-select {
+        width: 100%;
     }
 }

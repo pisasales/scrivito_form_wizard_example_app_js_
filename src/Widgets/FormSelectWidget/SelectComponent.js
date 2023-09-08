@@ -1,13 +1,29 @@
 import * as React from "react";
 
-export const Select = (({ selectionType, value, id, name, required, onChange }) => {
+export const Select = (({items, isMultiSelect, required, name  }) => {
     return (
-        <label className="form-check-label">
+        <div className="row">
+        {items.map((itemValue, index) => (
+          <SelectItem
+            selectionType={isMultiSelect ? "multi" : "radio"}
+            name={name}
+            value={itemValue}
+            required={required}
+            key={index}
+          />
+        ))}
+      </div>
+    );
+});
+
+const SelectItem = ({ selectionType, value, id, name, required, onChange })=>{
+    return (
+        <label className="select-label">
             <input
                 className="form-check-input"
                 name={name}
-                required={selectionType == "single" ? required : null}
-                type={selectionType == "single" ? "radio" : "checkbox"}
+                required={selectionType == "radio" ? required : null}
+                type={selectionType == "radio" ? "radio" : "checkbox"}
                 value={value}
                 onChange={onChange}
                 id={id}
@@ -15,4 +31,4 @@ export const Select = (({ selectionType, value, id, name, required, onChange }) 
             <span>{value}</span>
         </label>
     );
-});
+}

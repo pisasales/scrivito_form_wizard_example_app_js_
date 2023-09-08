@@ -67,7 +67,7 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
     steps: [
       new FormStepWidget({
         questions: [
-          new FormSelectWidget({ title: "Please choose", items: ["Car", "Boat"], selectionType: "multi", customFieldName: "custom_please_choose" })
+          new FormSelectWidget({ title: "Please choose", items: ["Car", "Boat"], selectionType: "radio", customFieldName: "custom_please_choose" })
         ]
       }),
       new FormStepWidget({

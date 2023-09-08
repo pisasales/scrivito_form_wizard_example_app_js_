@@ -9,7 +9,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       title: "Input type",
       values: [
         { value: "multi", title: "Multi select" },
-        { value: "single", title: "Single select" }
+        { value: "radio", title: "Radio buttons" },
+        {value: "dropdown", title:"Dropdown"}
       ],
     },
     items: {
@@ -22,11 +23,11 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
   },
   properties: (obj) => [
     'selectionType',"title", "items", "customFieldName",
-    ['required', { enabled: obj.get('selectionType') === 'single' }],
+    ['required', { enabled: obj.get('selectionType') !== 'multi' }],
     "helpText"
   ],
   initialContent: {
-    selectionType: "single",
+    selectionType: "radio",
     title: "Would you like to subscribe?",
     items: [
       "Yes", "No", "Maybe"
