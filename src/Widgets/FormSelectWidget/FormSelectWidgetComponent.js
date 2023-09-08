@@ -3,10 +3,10 @@ import * as Scrivito from "scrivito";
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormSelectWidget.scss";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { Select } from "./SelectComponent";
+import { Select } from "../FormContainerWidget/components/SelectComponent";
 import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
 import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
-import { Dropdown } from "./SelectDropdownComponent";
+import { Dropdown } from "../FormContainerWidget/components/SelectDropdownComponent";
 
 Scrivito.provideComponent("FormSelectWidget", ({ widget }) => {
   const items = widget.get("items");

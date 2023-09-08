@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import "./FormRatingWidget.scss";
-import { Star } from "./StarComponent"
+import { Star } from "../FormContainerWidget/components/StarComponent";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
 

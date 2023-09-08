@@ -48,7 +48,7 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
       key: "FormWizardWidgetFormSubmissions",
       properties: ["formId"],
       component: loadable(
-        async () => (await import("../FormContainerWidget/FormIdComponent")).FormIdComponent
+        async () => (await import("../FormContainerWidget/components/FormIdComponent")).FormIdComponent
       ),
     },
     {

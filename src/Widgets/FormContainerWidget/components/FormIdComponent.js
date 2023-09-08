@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { ContentProperty } from "../../Components/ScrivitoExtensions/ContentProperty";
+import { ContentProperty } from "../../../Components/ScrivitoExtensions/ContentProperty";
 
 export const FormIdComponent = Scrivito.connect(({ widget }) => {
   const formSubmissionsHref = widget.get("formId")

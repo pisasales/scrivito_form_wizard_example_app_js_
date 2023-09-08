@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DropdownOption } from "../FormContainerWidget/components/DropdownOption";
+import { DropdownOption } from "./DropdownOption";
 
 export const Dropdown = ({ options, name, id, required }) => {
   return (
