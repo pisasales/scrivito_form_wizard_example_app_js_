@@ -4,7 +4,9 @@ import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceh
 import "./FormStepWidget.scss";
 
 Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
-  const data = getData ? getData(widget.id()) : { stepNumber: 0, cssClasses: "" };
+  const data = getData
+    ? getData(widget.id())
+    : { stepNumber: 0, cssClasses: "" };
   const questions = widget.get("questions");
 
   if (!questions.length) {
@@ -16,10 +18,13 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
   }
 
   return (
-    <div className={getClassNames(data.cssClasses)} data-step-number={data.stepNumber}>
-      {Scrivito.isInPlaceEditingActive() &&
+    <div
+      className={getClassNames(data.cssClasses)}
+      data-step-number={data.stepNumber}
+    >
+      {Scrivito.isInPlaceEditingActive() && (
         <span className="step-preview-count">{"Step: " + data.stepNumber}</span>
-      }
+      )}
       <div className="row">
         <Scrivito.ContentTag content={widget} attribute="questions" />
       </div>
@@ -28,9 +33,9 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
 });
 
 function getClassNames(cssClasses) {
-  let classNames = '';
+  let classNames = "";
   if (cssClasses) {
-    classNames += (' ' + cssClasses);
+    classNames += " " + cssClasses;
   }
   if (Scrivito.isInPlaceEditingActive()) {
     classNames += " step-border";

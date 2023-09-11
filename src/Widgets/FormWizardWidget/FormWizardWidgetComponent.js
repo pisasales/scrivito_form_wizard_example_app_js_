@@ -46,11 +46,13 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
     if (!isValid) {
       return;
     }
-    const stepNumber = next ? Math.min(currentStep + 1, stepsLength) : Math.max(currentStep - 1, 1);
+    const stepNumber = next
+      ? Math.min(currentStep + 1, stepsLength)
+      : Math.max(currentStep - 1, 1);
     setCurrentStepNumber(stepNumber);
     const formElement = document.getElementById(widget.get("formId"));
     scrollIntoView(formElement);
-  }
+  };
 
   if (isSubmitting) {
     return (
@@ -81,7 +83,7 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
 
   return (
     <div className="form-wizard-widget">
-      <form method="post" id={widget.get("formId")} >
+      <form method="post" id={widget.get("formId")}>
         <input type="hidden" name="form_id" value={widget.get("formId")} />
         <input
           type="hidden"
@@ -94,46 +96,53 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
 
         <HoneypotField />
 
-        <Scrivito.ContentTag content={widget} attribute="steps" widgetProps={{
-          getData: stepId => {
-            const steps = widget.get("steps");
-            let cssClasses = "";
-            let stepNumber = 0;
-            steps.some((step, index) => {
-              if (step.id() == stepId) {
-                stepNumber = index + 1;
-                cssClasses = (stepNumber == currentStep || Scrivito.isInPlaceEditingActive()) ? "" : "hide";
-                return true;
-              }
-            });
-            return { stepNumber, cssClasses }
-          }
-        }} />
+        <Scrivito.ContentTag
+          content={widget}
+          attribute="steps"
+          widgetProps={{
+            getData: (stepId) => {
+              const steps = widget.get("steps");
+              let cssClasses = "";
+              let stepNumber = 0;
+              steps.some((step, index) => {
+                if (step.id() == stepId) {
+                  stepNumber = index + 1;
+                  cssClasses =
+                    stepNumber == currentStep ||
+                    Scrivito.isInPlaceEditingActive()
+                      ? ""
+                      : "hide";
+                  return true;
+                }
+              });
+              return { stepNumber, cssClasses };
+            },
+          }}
+        />
       </form>
       <div className="form-buttons">
         <button
           className="btn btn-primary backward-button"
           onClick={() => onPageChange(false)}
-          hidden={(currentStep == 1 && !Scrivito.isInPlaceEditingActive())}
+          hidden={currentStep == 1 && !Scrivito.isInPlaceEditingActive()}
         >
           {widget.get("backwardButtonText")}
         </button>
-        <div className="step-counter">
-          {currentStep + " / " + stepsLength}
-        </div>
+        <div className="step-counter">{currentStep + " / " + stepsLength}</div>
         <button
           className="btn btn-primary forward-button"
           onClick={isLastPage ? onSubmit : () => onPageChange(true)}
         >
-          {isLastPage ? widget.get("submitButtonText") : widget.get("forwardButtonText")}
+          {isLastPage
+            ? widget.get("submitButtonText")
+            : widget.get("forwardButtonText")}
         </button>
-
       </div>
     </div>
   );
 
   function validateCurrentStep() {
-    return doValidate(widget.get("formId"), currentStep)
+    return doValidate(widget.get("formId"), currentStep);
   }
 
   async function onSubmit() {
@@ -177,14 +186,12 @@ Scrivito.provideComponent("FormWizardWidget", ({ widget }) => {
     setSuccessfullySent(false);
     setSubmissionFailed(true);
   }
-
-
 });
 
 async function submit(formElement, formEndpoint) {
   const data = new FormData(formElement);
   const dataToSend = new FormData();
-  // workaround to send all field-names with equal name 
+  // workaround to send all field-names with equal name
   // as a comma separated string
   for (const [name, value] of data) {
     if (dataToSend.has(name)) {
@@ -233,7 +240,7 @@ function doValidate(formId, currentStep) {
       for (const node of allStepInputs.values()) {
         if (!node.checkValidity()) {
           node.reportValidity();
-          return isValid = false;
+          return (isValid = false);
         }
       }
     }

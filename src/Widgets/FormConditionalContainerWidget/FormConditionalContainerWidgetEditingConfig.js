@@ -8,14 +8,14 @@ import { customFieldNameValidation } from "../FormContainerWidget/utils/validati
 Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
   title: "Form Conditional Container",
   titleForContent(obj) {
-    return  "Container for: " + obj.get("title");
+    return "Container for: " + obj.get("title");
   },
   attributes: {
     headerType: {
       title: "Input type",
       values: [
         { value: "dropdown", title: "Dropdown" },
-        { value: "radio", title: "Radio buttons" }
+        { value: "radio", title: "Radio buttons" },
       ],
     },
     title: { title: "Add title" },
@@ -24,61 +24,59 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
     helpText: { title: "Help text" },
     conditions: {
       title: "Conditions",
-    }
+    },
   },
-  properties: ["headerType", "title", "required", "customFieldName", "conditions", "helpText"],
+  properties: [
+    "headerType",
+    "title",
+    "required",
+    "customFieldName",
+    "conditions",
+    "helpText",
+  ],
   initialContent: {
     headerType: "dropdown",
     title: "Select your vehicle type:",
     customFieldName: "custom_vehicle_selection",
-    conditions: [new FormConditionWidget({
-      title: "Car",
-      content: [
-        new FormSelectWidget({
-          title: "Select your car model",
-          customFieldName: "custom_car_model",
-          items: [
-            "Audi", "BMW", "Porsche"
-          ],
-          selectionType: "dropdown"
-        }),
-        new FormSelectWidget({
-          selectionType: "radio",
-          title: "Do you have a valid driving license?",
-          customFieldName: "custom_has_license",
-          required: true,
-          items: [
-            "Yes", "No", "Not sure"
-          ]
-        })
-      ]
-    }),
-    new FormConditionWidget({
-      title: "Boat",
-      content: [
-        new FormSelectWidget({
-          title: "Select your boat type",
-          customFieldName: "custom_boat_type",
-          items: [
-            "Canoe", "Fishing vessel", "Schooner", "Yacht"
-          ],
-          selectionType: "dropdown"
-        }),
-        new FormInputFieldWidget({
-          label: "Please describe your boat",
-          type: "custom",
-          customType: "multi_line",
-          customFieldName: "custom_boat_description",
-          placeholder: "",
-          required: true
-        })
-      ]
-    })
+    conditions: [
+      new FormConditionWidget({
+        title: "Car",
+        content: [
+          new FormSelectWidget({
+            title: "Select your car model",
+            customFieldName: "custom_car_model",
+            items: ["Audi", "BMW", "Porsche"],
+            selectionType: "dropdown",
+          }),
+          new FormSelectWidget({
+            selectionType: "radio",
+            title: "Do you have a valid driving license?",
+            customFieldName: "custom_has_license",
+            required: true,
+            items: ["Yes", "No", "Not sure"],
+          }),
+        ],
+      }),
+      new FormConditionWidget({
+        title: "Boat",
+        content: [
+          new FormSelectWidget({
+            title: "Select your boat type",
+            customFieldName: "custom_boat_type",
+            items: ["Canoe", "Fishing vessel", "Schooner", "Yacht"],
+            selectionType: "dropdown",
+          }),
+          new FormInputFieldWidget({
+            label: "Please describe your boat",
+            type: "custom",
+            customType: "multi_line",
+            customFieldName: "custom_boat_description",
+            placeholder: "",
+            required: true,
+          }),
+        ],
+      }),
     ],
   },
-  validations: [
-    insideFormOrStepContainerValidation,
-    customFieldNameValidation
-  ],
+  validations: [insideFormOrStepContainerValidation, customFieldNameValidation],
 });
-

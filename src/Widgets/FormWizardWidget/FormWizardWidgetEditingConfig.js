@@ -27,16 +27,21 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
       title: "Hidden fields",
     },
     forwardButtonText: {
-      title: "Forward button text"
+      title: "Forward button text",
     },
     backwardButtonText: {
-      title: "Backward button text"
+      title: "Backward button text",
     },
     submitButtonText: {
-      title: "Submit button text"
-    }
+      title: "Submit button text",
+    },
   },
-  properties: ["submittingMessage", "submittedMessage", "failedMessage", "steps"],
+  properties: [
+    "submittingMessage",
+    "submittedMessage",
+    "failedMessage",
+    "steps",
+  ],
   propertiesGroups: [
     {
       title: "Hidden fields",
@@ -48,13 +53,19 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
       key: "FormWizardWidgetFormSubmissions",
       properties: ["formId"],
       component: loadable(
-        async () => (await import("../FormContainerWidget/components/FormIdComponent")).FormIdComponent
+        async () =>
+          (await import("../FormContainerWidget/components/FormIdComponent"))
+            .FormIdComponent
       ),
     },
     {
       title: "Buttons",
       key: "FormWizardButtons",
-      properties: ["forwardButtonText", "backwardButtonText", "submitButtonText"],
+      properties: [
+        "forwardButtonText",
+        "backwardButtonText",
+        "submitButtonText",
+      ],
     },
   ],
   initialContent: {
@@ -67,14 +78,22 @@ Scrivito.provideEditingConfig("FormWizardWidget", {
     steps: [
       new FormStepWidget({
         questions: [
-          new FormSelectWidget({ title: "Please choose", items: ["Car", "Boat"], selectionType: "radio", customFieldName: "custom_please_choose" })
-        ]
+          new FormSelectWidget({
+            title: "Please choose",
+            items: ["Car", "Boat"],
+            selectionType: "radio",
+            customFieldName: "custom_please_choose",
+          }),
+        ],
       }),
       new FormStepWidget({
         questions: [
-          new FormRatingWidget({ title: "Please rate us", customFieldName: "custom_rating" })
-        ]
-      })
+          new FormRatingWidget({
+            title: "Please rate us",
+            customFieldName: "custom_rating",
+          }),
+        ],
+      }),
     ],
     forwardButtonText: "Forward",
     backwardButtonText: "Backward",

@@ -5,7 +5,7 @@ import "./FormConditionWidget.scss";
 
 Scrivito.provideComponent("FormConditionWidget", ({ widget, getData }) => {
   const data = getData ? getData(widget.id()) : { isActive: false };
-  
+
   if (!data.isActive && !Scrivito.isInPlaceEditingActive()) {
     return null;
   }
@@ -20,15 +20,20 @@ Scrivito.provideComponent("FormConditionWidget", ({ widget, getData }) => {
 
   return (
     <>
-      {Scrivito.isInPlaceEditingActive() &&
-        <span className="condition-info">{"Condition: " + widget.get("title")}</span>
-      }
-      {
-        (widget.get("content") && widget.get("content").length > 0)
-        &&
-        <Scrivito.ContentTag content={widget} attribute="content" className={Scrivito.isInPlaceEditingActive() ? "conditional-content" : ""} />
-      }
+      {Scrivito.isInPlaceEditingActive() && (
+        <span className="condition-info">
+          {"Condition: " + widget.get("title")}
+        </span>
+      )}
+      {widget.get("content") && widget.get("content").length > 0 && (
+        <Scrivito.ContentTag
+          content={widget}
+          attribute="content"
+          className={
+            Scrivito.isInPlaceEditingActive() ? "conditional-content" : ""
+          }
+        />
+      )}
     </>
   );
 });
-

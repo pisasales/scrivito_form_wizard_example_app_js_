@@ -7,7 +7,6 @@ export const FormRatingWidget = Scrivito.provideWidgetClass(
       title: "string",
       helpText: "html",
       customFieldName: "string",
-      text: "string",
     },
   }
 );

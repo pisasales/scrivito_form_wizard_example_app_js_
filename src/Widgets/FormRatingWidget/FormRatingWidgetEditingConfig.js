@@ -7,15 +7,12 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
   attributes: {
     title: { title: "Title" },
     customFieldName: { title: "Field name" },
-    helpText: { title: "Help text" }
+    helpText: { title: "Help text" },
   },
   properties: ["title", "customFieldName", "helpText"],
   initialContent: {
     title: "Please rate us",
-    customFieldName: "custom_"
+    customFieldName: "custom_",
   },
-  validations: [
-    insideFormOrStepContainerValidation,
-    customFieldNameValidation
-  ],
+  validations: [insideFormOrStepContainerValidation, customFieldNameValidation],
 });

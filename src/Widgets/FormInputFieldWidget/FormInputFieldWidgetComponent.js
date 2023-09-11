@@ -25,7 +25,7 @@ Scrivito.provideComponent("FormInputFieldWidget", ({ widget }) => {
       />
       {widget.get("required") && <Mandatory />}
 
-      {widget.get("helpText") && <HelpText widget={widget}/>}
+      {widget.get("helpText") && <HelpText widget={widget} />}
 
       {isCustomType(widget) && widget.get("customType") === "multi_line" ? (
         <textarea

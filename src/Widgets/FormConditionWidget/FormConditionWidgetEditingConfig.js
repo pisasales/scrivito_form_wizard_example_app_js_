@@ -11,7 +11,5 @@ Scrivito.provideEditingConfig("FormConditionWidget", {
     content: { title: "Content" },
   },
   properties: ["title", "content"],
-  validations: [
-    insideFormOrStepContainerValidation
-  ],
+  validations: [insideFormOrStepContainerValidation],
 });

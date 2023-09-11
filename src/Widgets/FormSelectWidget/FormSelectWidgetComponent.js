@@ -24,24 +24,24 @@ Scrivito.provideComponent("FormSelectWidget", ({ widget }) => {
     <div className="select-container mb-3">
       <div className="select-title">
         <span> {widget.get("title")} </span>
-        {(!isMultiSelect && widget.get("required")) && <Mandatory />}
+        {!isMultiSelect && widget.get("required") && <Mandatory />}
         {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
-      {isDropdown ?
+      {isDropdown ? (
         <Dropdown
           id={widget.id()}
           name={getFieldName(widget)}
           options={items}
           required={widget.get("required")}
         />
-        :
+      ) : (
         <Select
           isMultiSelect={isMultiSelect}
           items={widget.get("items")}
           required={widget.get("required")}
           name={getFieldName(widget)}
         />
-      }
+      )}
     </div>
   );
 });

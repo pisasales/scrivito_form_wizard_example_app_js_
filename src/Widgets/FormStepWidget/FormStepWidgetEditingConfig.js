@@ -24,6 +24,6 @@ Scrivito.provideEditingConfig("FormStepWidget", {
         }
       },
     ],
-    customFieldNameValidation
+    customFieldNameValidation,
   ],
 });

@@ -42,7 +42,8 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       key: "FormContainerWidgetFormSubmissions",
       properties: ["formId"],
       component: loadable(
-        async () => (await import("./components/FormIdComponent")).FormIdComponent
+        async () =>
+          (await import("./components/FormIdComponent")).FormIdComponent
       ),
     },
   ],

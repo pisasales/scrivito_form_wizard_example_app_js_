@@ -13,7 +13,8 @@ export function isFieldNameUnique(widget) {
     const found = formWizardcontainer
       .widgets()
       .find(
-        (child) => getFieldName(child) === fieldName && child.id() !== widget.id()
+        (child) =>
+          getFieldName(child) === fieldName && child.id() !== widget.id()
       );
     if (found) {
       return false;

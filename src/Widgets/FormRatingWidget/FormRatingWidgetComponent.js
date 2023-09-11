@@ -10,10 +10,8 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
   return (
     <div className="form-rating mb-3">
       <div className="rating-title">
-        <span>
-          {widget.get("title")}
-        </span> 
-          {widget.get("helpText") && <HelpText widget={widget} />}
+        <span>{widget.get("title")}</span>
+        {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
       {createArray(5).map((n, i) => (
         <Star
@@ -23,10 +21,13 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
           onSelect={() => setSelectedStars(i + 1)}
         />
       ))}
-      <input type="hidden" name={getFieldName(widget)} value={selectedStars == 0 ? "" : selectedStars}></input>
+      <input
+        type="hidden"
+        name={getFieldName(widget)}
+        value={selectedStars == 0 ? "" : selectedStars}
+      ></input>
     </div>
   );
-
 });
 
-const createArray = length => [...Array(length)];
+const createArray = (length) => [...Array(length)];

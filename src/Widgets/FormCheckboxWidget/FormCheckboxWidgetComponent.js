@@ -29,8 +29,8 @@ Scrivito.provideComponent("FormCheckboxWidget", ({ widget }) => {
         tag="label"
         {...labelOptions}
       />
-      {widget.get("required") && <Mandatory/>}
-      {widget.get("helpText") && <HelpText widget={widget}/>}
+      {widget.get("required") && <Mandatory />}
+      {widget.get("helpText") && <HelpText widget={widget} />}
     </div>
   );
 });

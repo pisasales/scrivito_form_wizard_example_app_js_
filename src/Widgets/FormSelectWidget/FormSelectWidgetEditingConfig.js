@@ -10,7 +10,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       values: [
         { value: "multi", title: "Multi select" },
         { value: "radio", title: "Radio buttons" },
-        {value: "dropdown", title:"Dropdown"}
+        { value: "dropdown", title: "Dropdown" },
       ],
     },
     items: {
@@ -22,17 +22,18 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     helpText: { title: "Help text" },
   },
   properties: (obj) => [
-    'selectionType',"title", "items", "customFieldName",
-    ['required', { enabled: obj.get('selectionType') !== 'multi' }],
-    "helpText"
+    "selectionType",
+    "title",
+    "items",
+    "customFieldName",
+    ["required", { enabled: obj.get("selectionType") !== "multi" }],
+    "helpText",
   ],
   initialContent: {
     selectionType: "radio",
     title: "Would you like to subscribe?",
-    items: [
-      "Yes", "No", "Maybe"
-    ],
-    customFieldName: "custom_"
+    items: ["Yes", "No", "Maybe"],
+    customFieldName: "custom_",
   },
   validations: [
     [
@@ -48,6 +49,6 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       },
     ],
     customFieldNameValidation,
-    insideFormOrStepContainerValidation
+    insideFormOrStepContainerValidation,
   ],
 });
