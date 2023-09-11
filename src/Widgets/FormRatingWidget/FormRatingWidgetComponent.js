@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import "./FormRatingWidget.scss";
 import { Star } from "../FormContainerWidget/components/StarComponent";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
@@ -11,9 +10,10 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
   return (
     <div className="form-rating mb-3">
       <div className="rating-title">
-        <p>{widget.get("title")}
+        <span>
+          {widget.get("title")}
+        </span> 
           {widget.get("helpText") && <HelpText widget={widget} />}
-        </p>
       </div>
       {createArray(5).map((n, i) => (
         <Star

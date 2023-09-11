@@ -21,7 +21,7 @@ Scrivito.provideComponent("FormConditionWidget", ({ widget, getData }) => {
   return (
     <>
       {Scrivito.isInPlaceEditingActive() &&
-        <span className="condition-info">{"Tab: " + widget.get("title")}</span>
+        <span className="condition-info">{"Condition: " + widget.get("title")}</span>
       }
       {
         (widget.get("content") && widget.get("content").length > 0)

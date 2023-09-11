@@ -1,5 +1,8 @@
 .condition-wrapper {
     border: green 2px dotted;
+    .select-title {
+            margin-top: 0.3em;
+        }
 }
 .conditional-content {
     border: red 2px dotted;

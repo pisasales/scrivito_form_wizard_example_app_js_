@@ -16,7 +16,7 @@ export const Select = (({items, isMultiSelect, required, name  }) => {
     );
 });
 
-const SelectItem = ({ selectionType, value, id, name, required, onChange })=>{
+export const SelectItem = ({ selectionType, value, id, name, required, onChange })=>{
     return (
         <label className="select-label">
             <input
