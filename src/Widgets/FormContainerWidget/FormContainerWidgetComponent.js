@@ -1,27 +1,20 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { scrollIntoView } from "./utils/scrollIntoView";
-import { getHistory } from "../../config/history";
-
+import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent";
+import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
+import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
 import "./FormContainerWidget.scss";
 
 Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   const formEndpoint = `https://api.justrelate.com/neoletter/instances/${process.env.SCRIVITO_TENANT}/form_submissions`;
-
-  const [browserLocation, setBrowserLocation] = React.useState(null);
-  React.useEffect(() => {
-    const history = getHistory();
-    if (!history) return;
-    setBrowserLocation(locationToUrl(history.location));
-
-    return history.listen(({ location }) =>
-      setBrowserLocation(locationToUrl(location))
-    );
-  }, []);
-
+  const [currentStep, setCurrentStepNumber] = React.useState(1);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
+  const isSingleStep = widget.get("formType") == "single-step";
+  const stepsLength = widget.get("steps").length;
+  const isLastPage = currentStep == stepsLength;
 
   if (isSubmitting) {
     return (
@@ -52,32 +45,61 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
 
   return (
     <div className="form-container-widget">
-      <form method="post" action={formEndpoint} onSubmit={onSubmit}>
-        <input type="hidden" name="form_id" value={widget.get("formId")} />
-        <input
-          type="hidden"
-          name="url"
-          value={browserLocation || Scrivito.urlFor(widget.obj())}
+      <form method="post" id={widget.get("formId")}>
+        <FormHiddenFields widget={widget} />
+        <Scrivito.ContentTag
+          content={widget}
+          attribute={isSingleStep ? "singleStepContent" : "steps"}
+          widgetProps={{
+            getData: (stepId) => {
+              const steps = widget.get("steps");
+              let cssClasses = "";
+              let stepNumber = 0;
+              steps.some((step, index) => {
+                if (step.id() == stepId) {
+                  stepNumber = index + 1;
+                  cssClasses =
+                    stepNumber == currentStep ||
+                    Scrivito.isInPlaceEditingActive()
+                      ? ""
+                      : "hide";
+                  return true;
+                }
+              });
+              return { stepNumber, cssClasses };
+            },
+          }}
         />
-        <Scrivito.InPlaceEditingOff>
-          <Scrivito.ContentTag content={widget} attribute="hiddenFields" />
-        </Scrivito.InPlaceEditingOff>
-
-        <HoneypotField />
-
-        <Scrivito.ContentTag content={widget} attribute="content" />
       </form>
+      {isSingleStep ? (
+        <FormFooterSingleStep widget={widget} onSubmit={onSubmit} />
+      ) : (
+        <FormFooterMultiSteps
+          widget={widget}
+          onSubmit={onSubmit}
+          onPageChange={onPageChange}
+          currentStep={currentStep}
+          stepsLength={stepsLength}
+          isLastPage={isLastPage}
+        />
+      )}
     </div>
   );
 
-  async function onSubmit(element) {
-    element.preventDefault();
-
-    scrollIntoView(element.target);
+  async function onSubmit() {
+    if (Scrivito.isInPlaceEditingActive()) {
+      return;
+    }
+    const isValid = validateCurrentStep();
+    if (!isValid) {
+      return;
+    }
+    const formElement = document.getElementById(widget.get("formId"));
+    scrollIntoView(formElement);
 
     indicateProgress();
     try {
-      await submit(element.target, formEndpoint);
+      await submit(formElement, formEndpoint);
       indicateSuccess();
     } catch (e) {
       setTimeout(() => {
@@ -105,11 +127,37 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
     setSuccessfullySent(false);
     setSubmissionFailed(true);
   }
+
+  function validateCurrentStep() {
+    return doValidate(widget.get("formId"), currentStep, isSingleStep);
+  }
+
+  function onPageChange(next) {
+    let isValid = true;
+
+    if (Scrivito.isInPlaceEditingActive()) {
+      return;
+    }
+    if (next) {
+      isValid = validateCurrentStep();
+    }
+    if (!isValid) {
+      return;
+    }
+    const stepNumber = next
+      ? Math.min(currentStep + 1, stepsLength)
+      : Math.max(currentStep - 1, 1);
+    setCurrentStepNumber(stepNumber);
+    const formElement = document.getElementById(widget.get("formId"));
+    scrollIntoView(formElement);
+  }
 });
 
 async function submit(formElement, formEndpoint) {
   const data = new FormData(formElement);
   const dataToSend = new FormData();
+  // workaround to send all field-names with equal name
+  // as a comma separated string
   for (const [name, value] of data) {
     if (dataToSend.has(name)) {
       continue;
@@ -127,12 +175,24 @@ async function submit(formElement, formEndpoint) {
   }
 }
 
-const HoneypotField = () => (
-  <div aria-hidden="true" className="winnie-the-pooh">
-    <input autoComplete="off" name="fax" tabIndex="-1" />
-  </div>
-);
-
-function locationToUrl(location) {
-  return `${window.location.origin}${location.pathname}${location.search}`;
+function doValidate(formId, currentStep, isSingleStep) {
+  let isValid = true;
+  const form = document.getElementById(formId);
+  if (form) {
+    const stepOrForm = isSingleStep
+      ? form
+      : form.querySelectorAll(`[data-step-number='${currentStep}']`);
+    if (stepOrForm) {
+      const allInputs = isSingleStep
+        ? stepOrForm.querySelectorAll("input, select, textarea")
+        : stepOrForm.item(0).querySelectorAll("input, select, textarea");
+      for (const node of allInputs.values()) {
+        if (!node.checkValidity()) {
+          node.reportValidity();
+          return (isValid = false);
+        }
+      }
+    }
+    return isValid;
+  }
 }

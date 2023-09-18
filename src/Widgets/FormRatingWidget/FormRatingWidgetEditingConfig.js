@@ -1,7 +1,6 @@
 import * as Scrivito from "scrivito";
-import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-
+import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
 Scrivito.provideEditingConfig("FormRatingWidget", {
   title: "Form Rating",
   attributes: {
@@ -14,5 +13,5 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
     title: "Please rate us",
     customFieldName: "custom_",
   },
-  validations: [insideFormOrStepContainerValidation, customFieldNameValidation],
+  validations: [insideFormContainerValidation, customFieldNameValidation],
 });

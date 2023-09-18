@@ -1,10 +1,9 @@
 import * as Scrivito from "scrivito";
-import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 import { FormConditionWidget } from "../FormConditionWidget/FormConditionWidgetClass";
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
 import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-
+import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
 Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
   title: "Form Conditional Container",
   titleForContent(obj) {
@@ -78,5 +77,5 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
       }),
     ],
   },
-  validations: [insideFormOrStepContainerValidation, customFieldNameValidation],
+  validations: [insideFormContainerValidation, customFieldNameValidation],
 });

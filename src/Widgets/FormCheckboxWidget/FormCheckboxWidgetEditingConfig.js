@@ -3,8 +3,7 @@ import formCheckboxWidgetIcon from "../../assets/images/form_checkbox_widget.svg
 import { isCustomType } from "../FormContainerWidget/utils/isCustomType";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 import { typeValidation } from "../FormContainerWidget/utils/validations/typeValidation";
-import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
-
+import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
 Scrivito.provideEditingConfig("FormCheckboxWidget", {
   title: "Form Checkbox",
   thumbnail: formCheckboxWidgetIcon,
@@ -35,6 +34,6 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
   validations: [
     typeValidation,
     customFieldNameValidation,
-    insideFormOrStepContainerValidation,
+    insideFormContainerValidation,
   ],
 });

@@ -1,24 +1,24 @@
 import * as Scrivito from "scrivito";
-import { insideFormWizardValidation } from "../FormWizardWidget/utils/validations/insideFormWizardValidation";
+import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 
 Scrivito.provideEditingConfig("FormStepWidget", {
   title: "Form Step",
   attributes: {
-    questions: {
-      title: "Questions",
+    items: {
+      title: "Items",
     },
   },
-  properties: ["questions"],
+  properties: ["items"],
 
   validations: [
-    insideFormWizardValidation,
+    insideFormContainerValidation,
     [
-      "questions",
-      (questions) => {
-        if (questions.length < 1) {
+      "items",
+      (items) => {
+        if (items.length < 1) {
           return {
-            message: "The page must include at least one question.",
+            message: "The step must include at least one item.",
             severity: "error",
           };
         }

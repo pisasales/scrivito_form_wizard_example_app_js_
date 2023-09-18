@@ -37,6 +37,7 @@ export const DropdownHeader = Scrivito.connect(
   }
 );
 
+//TODO: move to dropdownOption & rename
 const EmptyOption = () => {
   return <DropdownOption value={""} id={"empty-option"} key={"empty-option"} />;
 };

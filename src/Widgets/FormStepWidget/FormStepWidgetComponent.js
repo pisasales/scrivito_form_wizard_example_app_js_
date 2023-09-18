@@ -7,12 +7,12 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
   const data = getData
     ? getData(widget.id())
     : { stepNumber: 0, cssClasses: "" };
-  const questions = widget.get("questions");
+  const items = widget.get("items");
 
-  if (!questions.length) {
+  if (!items.length) {
     return (
       <InPlaceEditingPlaceholder center>
-        Select some questions in the widget properties.
+        Select some items in the widget properties.
       </InPlaceEditingPlaceholder>
     );
   }
@@ -26,7 +26,7 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
         <span className="step-preview-count">{"Step: " + data.stepNumber}</span>
       )}
       <div className="row">
-        <Scrivito.ContentTag content={widget} attribute="questions" />
+        <Scrivito.ContentTag content={widget} attribute="items" />
       </div>
     </div>
   );

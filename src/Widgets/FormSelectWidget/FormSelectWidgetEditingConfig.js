@@ -1,7 +1,6 @@
 import * as Scrivito from "scrivito";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
-
+import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
 Scrivito.provideEditingConfig("FormSelectWidget", {
   title: "Form Select",
   attributes: {
@@ -49,6 +48,6 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       },
     ],
     customFieldNameValidation,
-    insideFormOrStepContainerValidation,
+    insideFormContainerValidation,
   ],
 });

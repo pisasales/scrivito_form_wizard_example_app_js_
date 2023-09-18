@@ -1,5 +1,4 @@
 import * as Scrivito from "scrivito";
-import { insideFormOrStepContainerValidation } from "../FormWizardWidget/utils/validations/insideFormOrStepContainerValidation";
 
 Scrivito.provideEditingConfig("FormConditionWidget", {
   title: "Form Condition",
@@ -11,5 +10,4 @@ Scrivito.provideEditingConfig("FormConditionWidget", {
     content: { title: "Content" },
   },
   properties: ["title", "content"],
-  validations: [insideFormOrStepContainerValidation],
 });
