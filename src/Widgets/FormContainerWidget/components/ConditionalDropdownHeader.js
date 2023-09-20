@@ -13,7 +13,7 @@ export const DropdownHeader = Scrivito.connect(
         }`}
       >
         <div className="select-title">
-          <span>{widget.get("title")}</span>
+          <span className="text-super">{widget.get("title")}</span>
           {widget.get("required") && <Mandatory />}
           {widget.get("helpText") && <HelpText widget={widget} />}
         </div>

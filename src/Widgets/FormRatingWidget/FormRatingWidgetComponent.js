@@ -10,7 +10,7 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
   return (
     <div className="form-rating mb-3">
       <div className="rating-title">
-        <span>{widget.get("title")}</span>
+        <span className="text-super">{widget.get("title")}</span>
         {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
       {createArray(5).map((n, i) => (
