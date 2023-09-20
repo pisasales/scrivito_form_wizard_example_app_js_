@@ -4,7 +4,7 @@ import { insideFormContainerValidation } from "../FormContainerWidget/utils/vali
 Scrivito.provideEditingConfig("FormRatingWidget", {
   title: "Form Rating",
   attributes: {
-    title: { title: "Title" },
+    title: { title: "Label" },
     customFieldName: { title: "Field name" },
     helpText: { title: "Help text" },
   },

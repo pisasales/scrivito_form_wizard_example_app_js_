@@ -17,7 +17,7 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
         { value: "radio", title: "Radio buttons" },
       ],
     },
-    title: { title: "Add title" },
+    title: { title: "Label" },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },

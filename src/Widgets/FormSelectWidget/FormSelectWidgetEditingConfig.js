@@ -15,7 +15,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     items: {
       title: "Items",
     },
-    title: { title: "Title" },
+    title: { title: "Label" },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },
