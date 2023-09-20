@@ -57,6 +57,7 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
       forwardButtonText: "string",
       backwardButtonText: "string",
       submitButtonText: "string",
+      showBorder: "boolean",
       singleSubmitButtonAlignment: [
         "enum",
         {

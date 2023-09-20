@@ -44,7 +44,11 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   }
 
   return (
-    <div className="form-container-widget">
+    <div
+      className={`form-container-widget ${
+        widget.get("showBorder") ? "form-border" : ""
+      }`}
+    >
       <form method="post" id={widget.get("formId")}>
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag

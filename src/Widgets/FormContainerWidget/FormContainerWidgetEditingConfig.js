@@ -47,6 +47,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         { value: "multi-step", title: "Multi steps" },
       ],
     },
+    showBorder: { title: "Show as box" },
     singleSubmitButtonAlignment: {
       title: "Alignment",
       values: [
@@ -59,6 +60,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
   },
   properties: [
     "formType",
+    "showBorder",
     "submittingMessage",
     "submittedMessage",
     "failedMessage",
@@ -177,6 +179,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     forwardButtonText: "Forward",
     backwardButtonText: "Backward",
     submitButtonText: "Submit",
+    showBorder: false,
   },
   validations: [
     (widget) => {
