@@ -186,7 +186,7 @@ function doValidate(formId, currentStep, isSingleStep) {
     const stepOrForm = isSingleStep
       ? form
       : form.querySelectorAll(`[data-step-number='${currentStep}']`);
-    if (stepOrForm) {
+    if (stepOrForm && stepOrForm.item(0)) {
       const allInputs = isSingleStep
         ? stepOrForm.querySelectorAll("input, select, textarea")
         : stepOrForm.item(0).querySelectorAll("input, select, textarea");
