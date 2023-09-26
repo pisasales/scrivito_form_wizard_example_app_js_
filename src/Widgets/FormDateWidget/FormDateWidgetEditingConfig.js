@@ -9,7 +9,7 @@ Scrivito.provideEditingConfig("FormDateWidget", {
       title: "Format",
       values: [
         { value: "date", title: "Date" },
-        { value: "datetime-local", title: "Date-time" },
+        { value: "datetime-local", title: "Date and time" },
       ],
     },
     customFieldName: { title: "Field name" },
@@ -18,7 +18,7 @@ Scrivito.provideEditingConfig("FormDateWidget", {
   },
   properties: ["title", "dateType", "customFieldName", "required", "helpText"],
   initialContent: {
-    title: "Please select your birthbay",
+    title: "Please enter a date",
     customFieldName: "custom_",
     dateType: "date",
   },

@@ -7,9 +7,9 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     selectionType: {
       title: "Input type",
       values: [
-        { value: "multi", title: "Multi select" },
         { value: "radio", title: "Radio buttons" },
         { value: "dropdown", title: "Dropdown" },
+        { value: "multi", title: "Checkboxes" },
       ],
     },
     items: {
@@ -30,8 +30,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
   ],
   initialContent: {
     selectionType: "radio",
-    title: "Would you like to subscribe?",
-    items: ["Yes", "No", "Maybe"],
+    title: "Please choose",
+    items: ["Yes", "No"],
     customFieldName: "custom_",
   },
   validations: [

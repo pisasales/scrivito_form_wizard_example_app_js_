@@ -44,7 +44,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       title: "Format",
       values: [
         { value: "single-step", title: "Single step" },
-        { value: "multi-step", title: "Multi steps" },
+        { value: "multi-step", title: "Multiple steps" },
       ],
     },
     showBorder: { title: "Show as box" },
@@ -82,7 +82,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         ),
       },
       {
-        title: "Navigation",
+        title: "Navigation area",
         key: "FormNavigationButtons",
         properties: getNavigationProperties(obj),
       },
@@ -161,17 +161,17 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         items: [
           new FormSelectWidget({
             title: "Please choose",
-            items: ["Car", "Boat"],
+            items: ["Yes", "No"],
             selectionType: "radio",
-            customFieldName: "custom_please_choose",
+            customFieldName: "custom_choose",
           }),
         ],
       }),
       new FormStepWidget({
         items: [
           new FormRatingWidget({
-            title: "Please rate us",
-            customFieldName: "custom_rating",
+            title: "Please leave your rating",
+            customFieldName: "custom_rate",
           }),
         ],
       }),
@@ -236,8 +236,18 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
  * @returns an array of strings containing the properties to be shown
  */
 function getNavigationProperties(obj) {
-  const p = ["forwardButtonText", "backwardButtonText", "submitButtonText"];
-  if (obj.get("formType") == "single-step")
-    p.push("singleSubmitButtonAlignment");
-  return p;
+  const singleStepNavigationProps = [
+    "submitButtonText",
+    "singleSubmitButtonAlignment",
+  ];
+  const MultiStepNavigationProps = [
+    "forwardButtonText",
+    "backwardButtonText",
+    "submitButtonText",
+  ];
+  if (obj.get("formType") == "single-step") {
+    return singleStepNavigationProps;
+  } else {
+    return MultiStepNavigationProps;
+  }
 }
