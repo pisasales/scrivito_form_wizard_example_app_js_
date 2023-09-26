@@ -35,6 +35,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     customFieldName: "custom_",
   },
   validations: [
+    insideFormContainerValidation,
     [
       "items",
 
@@ -48,6 +49,5 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       },
     ],
     customFieldNameValidation,
-    insideFormContainerValidation,
   ],
 });

@@ -55,6 +55,7 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
     return ["type", "label", "placeholder", "required", "helpText"];
   },
   validations: [
+    insideFormContainerValidation,
     typeValidation,
     [
       "customType",
@@ -65,6 +66,5 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       },
     ],
     customFieldNameValidation,
-    insideFormContainerValidation,
   ],
 });

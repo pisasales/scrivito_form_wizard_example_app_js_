@@ -32,8 +32,8 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
     label: "Please send me your free printed product catalog.",
   },
   validations: [
+    insideFormContainerValidation,
     typeValidation,
     customFieldNameValidation,
-    insideFormContainerValidation,
   ],
 });

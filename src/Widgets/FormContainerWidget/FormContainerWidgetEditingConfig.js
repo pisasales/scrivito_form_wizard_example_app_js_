@@ -187,6 +187,11 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         return "Needs to be outside of a form.";
       }
     },
+    (widget) => {
+      if (widget.get("steps").length < 2) {
+        return "The form must include at least two steps.";
+      }
+    },
 
     [
       "submittingMessage",
