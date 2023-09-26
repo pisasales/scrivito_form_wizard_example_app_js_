@@ -2,6 +2,13 @@
 @import "src/assets/stylesheets/variables";
 
 .form-container-widget {
+  .dropdown-container,
+  .select-container {
+    .select-title {
+      display: flex;
+      align-items: baseline;
+    }
+  }
   .text-super {
     vertical-align: super;
   }

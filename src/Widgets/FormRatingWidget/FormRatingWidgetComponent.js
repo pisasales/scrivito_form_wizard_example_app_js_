@@ -3,6 +3,7 @@ import * as Scrivito from "scrivito";
 import { Star } from "../FormContainerWidget/components/StarComponent";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
+import "./FormRatingWidget.scss";
 
 Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
   const [selectedStars, setSelectedStars] = React.useState(0);

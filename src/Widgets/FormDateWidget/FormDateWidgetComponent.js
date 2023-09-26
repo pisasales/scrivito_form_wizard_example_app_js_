@@ -3,6 +3,7 @@ import * as Scrivito from "scrivito";
 import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
 import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
 import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
+import "./FormDateWidget.scss";
 
 Scrivito.provideComponent("FormDateWidget", ({ widget }) => {
   const [value, setValue] = React.useState("");
@@ -11,7 +12,7 @@ Scrivito.provideComponent("FormDateWidget", ({ widget }) => {
     setValue(d.toISOString());
   };
   return (
-    <div className="mb-3">
+    <div className="form-date mb-3">
       <div className="date-title">
         <span className="text-super">{widget.get("title")}</span>
         {widget.get("required") && <Mandatory />}
