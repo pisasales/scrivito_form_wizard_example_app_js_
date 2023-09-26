@@ -23,7 +23,7 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
       data-step-number={data.stepNumber}
     >
       {Scrivito.isInPlaceEditingActive() && (
-        <span className="step-preview-count">{"Steps " + data.stepNumber}</span>
+        <span className="step-preview-count">{"Step " + data.stepNumber}</span>
       )}
       <div className="row">
         <Scrivito.ContentTag content={widget} attribute="items" />
