@@ -16,6 +16,17 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   const stepsLength = widget.get("steps").length;
   const isLastPage = currentStep == stepsLength;
 
+  React.useEffect(() => {
+    const steps = widget.get("steps");
+    steps.forEach((step, i) => {
+      const stepNumber = i + 1;
+      step.update({
+        stepNumber: stepNumber,
+        isActive: currentStep == stepNumber,
+      });
+    });
+  }, [widget.get("steps")]);
+
   if (isSubmitting) {
     return (
       <div className="form-container-widget text-center">
@@ -54,25 +65,6 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
         <Scrivito.ContentTag
           content={widget}
           attribute={isSingleStep ? "singleStepContent" : "steps"}
-          widgetProps={{
-            getData: (stepId) => {
-              const steps = widget.get("steps");
-              let cssClasses = "";
-              let stepNumber = 0;
-              steps.some((step, index) => {
-                if (step.id() == stepId) {
-                  stepNumber = index + 1;
-                  cssClasses =
-                    stepNumber == currentStep ||
-                    Scrivito.isInPlaceEditingActive()
-                      ? ""
-                      : "hide";
-                  return true;
-                }
-              });
-              return { stepNumber, cssClasses };
-            },
-          }}
         />
       </form>
       {isSingleStep ? (

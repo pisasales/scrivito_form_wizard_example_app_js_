@@ -4,6 +4,9 @@ import { customFieldNameValidation } from "../FormContainerWidget/utils/validati
 
 Scrivito.provideEditingConfig("FormStepWidget", {
   title: "Form Step",
+  titleForContent: (widget) => {
+    return "Step " + widget.get("stepNumber");
+  },
   attributes: {
     items: {
       title: "Items",

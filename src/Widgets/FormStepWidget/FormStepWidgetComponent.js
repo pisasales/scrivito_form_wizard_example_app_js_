@@ -3,10 +3,8 @@ import * as Scrivito from "scrivito";
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormStepWidget.scss";
 
-Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
-  const data = getData
-    ? getData(widget.id())
-    : { stepNumber: 0, cssClasses: "" };
+Scrivito.provideComponent("FormStepWidget", ({ widget }) => {
+  const stepNumber = widget.get("stepNumber");
   const items = widget.get("items");
 
   if (!items.length) {
@@ -19,11 +17,15 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
 
   return (
     <div
-      className={getClassNames(data.cssClasses)}
-      data-step-number={data.stepNumber}
+      className={`${
+        Scrivito.isInPlaceEditingActive()
+          ? "step-border"
+          : `${widget.get("isActive") ? "" : "hide"}`
+      } `}
+      data-step-number={stepNumber}
     >
       {Scrivito.isInPlaceEditingActive() && (
-        <span className="step-preview-count">{"Step " + data.stepNumber}</span>
+        <span className="step-preview-count">{"Step " + stepNumber}</span>
       )}
       <div className="row">
         <Scrivito.ContentTag content={widget} attribute="items" />
@@ -31,14 +33,3 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
     </div>
   );
 });
-
-function getClassNames(cssClasses) {
-  let classNames = "";
-  if (cssClasses) {
-    classNames += " " + cssClasses;
-  }
-  if (Scrivito.isInPlaceEditingActive()) {
-    classNames += " step-border";
-  }
-  return classNames;
-}
