@@ -1,8 +1,11 @@
 import * as Scrivito from "scrivito";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
+import formDateWidgetIcon from "../../assets/images/form_widget_date.svg";
+
 Scrivito.provideEditingConfig("FormDateWidget", {
   title: "Form Date",
+  thumbnail: formDateWidgetIcon,
   attributes: {
     title: { title: "Label" },
     dateType: {
