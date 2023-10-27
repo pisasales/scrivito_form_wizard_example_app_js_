@@ -1,5 +1,4 @@
 import * as Scrivito from "scrivito";
-import loadable from "@loadable/component";
 import formContainerWidgetIcon from "../../assets/images/form_container_widget.svg";
 import { ColumnContainerWidget } from "../ColumnContainerWidget/ColumnContainerWidgetClass";
 import { ColumnWidget } from "../ColumnWidget/ColumnWidgetClass";
@@ -10,6 +9,7 @@ import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
 import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
+import { FormIdComponent } from "./components/FormIdComponent";
 
 Scrivito.provideEditingConfig("FormContainerWidget", {
   title: "Form",
@@ -76,10 +76,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         title: "Form submissions",
         key: "FormContainerWidgetFormSubmissions",
         properties: ["formId"],
-        component: loadable(
-          async () =>
-            (await import("./components/FormIdComponent")).FormIdComponent
-        ),
+        component: FormIdComponent,
       },
       {
         title: "Navigation area",

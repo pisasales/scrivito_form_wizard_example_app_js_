@@ -43,6 +43,5 @@ export const FormStepWidget = Scrivito.provideWidgetClass("FormStepWidget", {
   attributes: {
     items: ["widgetlist", { only: allowedContent }],
     stepNumber: "integer",
-    isActive: "boolean",
   },
 });
