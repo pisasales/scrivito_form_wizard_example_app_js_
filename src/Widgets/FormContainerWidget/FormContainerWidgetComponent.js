@@ -4,6 +4,7 @@ import { scrollIntoView } from "./utils/scrollIntoView";
 import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent";
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
+import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormContainerWidget.scss";
 
 Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
@@ -26,8 +27,14 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
       const stepNumber = i + 1;
       step.update({
         stepNumber: stepNumber,
+        isSingleStep: isSingleStep
       });
     });
+    if (steps.length > 1 && isSingleStep) {
+      widget.update({ formType: "multi-step" });
+    } else if (steps.length == 1 && !isSingleStep) {
+      widget.update({ formType: "single-step" });
+    }
   }, [widget.get("steps")]);
 
   if (isSubmitting) {
@@ -67,7 +74,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag
           content={widget}
-          attribute={isSingleStep ? "singleStepContent" : "steps"}
+          attribute={ "steps"}
           widgetProps={{
             getData: (stepId) => {
               const steps = widget.get("steps");
@@ -80,7 +87,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
                   return true;
                 }
               });
-              return { stepNumber, isActive };
+              return { stepNumber, isActive, isSingleStep };
             },
           }}
         />
@@ -143,7 +150,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   }
 
   function validateCurrentStep() {
-    return doValidate(widget.get("formId"), currentStep, isSingleStep);
+    return doValidate(widget.get("formId"), currentStep);
   }
 
   function onPageChange(next) {
@@ -189,17 +196,13 @@ async function submit(formElement, formEndpoint) {
   }
 }
 
-function doValidate(formId, currentStep, isSingleStep) {
+function doValidate(formId, currentStep) {
   let isValid = true;
   const form = document.getElementById(formId);
   if (form) {
-    const stepOrForm = isSingleStep
-      ? form
-      : form.querySelectorAll(`[data-step-number='${currentStep}']`);
-    if (stepOrForm) {
-      const allInputs = isSingleStep
-        ? stepOrForm.querySelectorAll("input, select, textarea")
-        : stepOrForm.item(0)?.querySelectorAll("input, select, textarea") || [];
+    const step = form.querySelectorAll(`[data-step-number='${currentStep}']`);
+    if (step) {
+      const allInputs = step.item(0)?.querySelectorAll("input, select, textarea") || [];
       for (const node of allInputs.values()) {
         if (!node.checkValidity()) {
           node.reportValidity();

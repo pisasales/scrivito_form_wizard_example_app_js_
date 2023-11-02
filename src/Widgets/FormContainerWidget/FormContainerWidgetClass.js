@@ -41,7 +41,6 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
   "FormContainerWidget",
   {
     attributes: {
-      singleStepContent: ["widgetlist", { only: singleStepAllowedContent }],
       formId: "string",
       failedMessage: "string",
       submittedMessage: "string",
@@ -65,6 +64,6 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
         },
       ],
     },
-    extractTextAttributes: ["singleStepContent", "steps"],
+    extractTextAttributes: [ "steps"],
   }
 );

@@ -101,75 +101,59 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     failedMessage:
       "We are sorry, your request could not be completed. Please try again later.",
     formType: "single-step",
-    singleStepContent: () => [
-      new ColumnContainerWidget({
-        columns: [
-          new ColumnWidget({
-            colSize: 6,
-            content: [
-              new FormInputFieldWidget({
-                type: "given_name",
-                label: "First name",
-                placeholder: "Your first name",
-                required: true,
-              }),
-            ],
-          }),
-          new ColumnWidget({
-            colSize: 6,
-            content: [
-              new FormInputFieldWidget({
-                type: "family_name",
-                label: "Last name",
-                placeholder: "Your last name",
-                required: true,
-              }),
-            ],
-          }),
-        ],
-      }),
-      new FormInputFieldWidget({
-        label: "Email",
-        placeholder: "Your email address",
-        type: "email",
-        required: true,
-      }),
-      new FormInputFieldWidget({
-        type: "company",
-        label: "Company",
-        placeholder: "Your company",
-      }),
-
-      new FormInputFieldWidget({
-        type: "custom",
-        customType: "multi_line",
-        customFieldName: "custom_message",
-        label: "Message",
-        placeholder: "Your message",
-        required: true,
-      }),
-      new TextWidget({
-        text: "<p>By submitting, you agree to the terms and conditions of our privacy policy.</p>",
-      }),
-    ],
     singleSubmitButtonAlignment: "text-center",
     steps: [
       new FormStepWidget({
         items: [
-          new FormSelectWidget({
-            title: "Please choose",
-            items: ["Yes", "No"],
-            selectionType: "radio",
-            customFieldName: "custom_choose",
-          }),
-        ],
-      }),
-      new FormStepWidget({
-        items: [
-          new FormRatingWidget({
-            title: "Please leave your rating",
-            customFieldName: "custom_rate",
-          }),
+          new ColumnContainerWidget({
+                columns: [
+                  new ColumnWidget({
+                    colSize: 6,
+                    content: [
+                      new FormInputFieldWidget({
+                        type: "given_name",
+                        label: "First name",
+                        placeholder: "Your first name",
+                        required: true,
+                      }),
+                    ],
+                  }),
+                  new ColumnWidget({
+                    colSize: 6,
+                    content: [
+                      new FormInputFieldWidget({
+                        type: "family_name",
+                        label: "Last name",
+                        placeholder: "Your last name",
+                        required: true,
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+              new FormInputFieldWidget({
+                label: "Email",
+                placeholder: "Your email address",
+                type: "email",
+                required: true,
+              }),
+              new FormInputFieldWidget({
+                type: "company",
+                label: "Company",
+                placeholder: "Your company",
+              }),
+        
+              new FormInputFieldWidget({
+                type: "custom",
+                customType: "multi_line",
+                customFieldName: "custom_message",
+                label: "Message",
+                placeholder: "Your message",
+                required: true,
+              }),
+              new TextWidget({
+                text: "<p>By submitting, you agree to the terms and conditions of our privacy policy.</p>",
+              })
         ],
       }),
     ],
@@ -185,8 +169,8 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       }
     },
     (widget) => {
-      if (widget.get("steps").length < 2) {
-        return "The form must include at least two steps.";
+      if (widget.get("steps").length <= 0) {
+        return "The form must include at least one step.";
       }
     },
 
