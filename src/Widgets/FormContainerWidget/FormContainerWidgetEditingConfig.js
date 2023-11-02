@@ -40,13 +40,6 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     submitButtonText: {
       title: "Submit button text",
     },
-    formType: {
-      title: "Format",
-      values: [
-        { value: "single-step", title: "Single step" },
-        { value: "multi-step", title: "Multiple steps" },
-      ],
-    },
     showBorder: { title: "Show as box" },
     singleSubmitButtonAlignment: {
       title: "Alignment",
@@ -59,7 +52,6 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     },
   },
   properties: [
-    "formType",
     "showBorder",
     "submittingMessage",
     "submittedMessage",
