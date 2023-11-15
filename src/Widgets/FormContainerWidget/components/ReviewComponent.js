@@ -14,33 +14,34 @@ export const Review = ({ widget, reviewData, onHide }) => {
     onHide();
   };
   return (
-    <Modal
-      show={show}
-      onHide={handleClose}
-      size="lg"
-    >
-    {widget.get("showReviewHeader") && 
-      <Modal.Header style={{ alignSelf: "center" }}>
-        <Modal.Title>{widget.get("reviewHeaderTitle")}</Modal.Title>
-      </Modal.Header>
-    }
+    <Modal show={show} onHide={handleClose} size="lg">
+      {widget.get("showReviewHeader") && (
+        <Modal.Header style={{ alignSelf: "center" }}>
+          <Modal.Title>{widget.get("reviewHeaderTitle")}</Modal.Title>
+        </Modal.Header>
+      )}
       <Modal.Body className="form-review">
         {reviewData.map((step, i) => (
-          <div className="step-review-container" key={"step-review-container-"+i}>
-         {widget.get("showStepsInReview") &&
-          <h4 className="step-review">Step {i}</h4>
-          }
-         { step.map((d,i)=> <ReviewItem key={"item-"+i} item={d} />) }
+          <div
+            className="step-review-container"
+            key={"step-review-container-" + i}
+          >
+            {widget.get("showStepsInReview") && (
+              <h4 className="step-review">Step {i}</h4>
+            )}
+            {step.map((d, i) => (
+              <ReviewItem key={"item-" + i} item={d} />
+            ))}
           </div>
         ))}
       </Modal.Body>
-      {widget.get("showReviewFooter")&&
-      <Modal.Footer>
-        <Button variant="primary" onClick={handleClose}>
-         {widget.get("reviewCloseButtonText")}
-        </Button>
-      </Modal.Footer>
-      }
+      {widget.get("showReviewFooter") && (
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            {widget.get("reviewCloseButtonText")}
+          </Button>
+        </Modal.Footer>
+      )}
     </Modal>
   );
 };

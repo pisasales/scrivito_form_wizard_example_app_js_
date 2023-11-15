@@ -42,7 +42,10 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     },
     showBorder: { title: "Show as box", description: "Adds a border around the form if selected." },
     showReview: { title: "Show review", description:"Shows a review button on last step for multiple steps. If clicked, a modal with answers will be shown." },
-    showEmptyAnswers: {title: "Show empty answers", description:"Shows also empty answers if selected."},
+    includeEmptyAnswers: {
+      title: "Include empty answers",
+      description: "Also includes empty answers in the review dialog.",
+    },
     showReviewHeader: {"title": "Show header", description:"Shows a header in the review modal."},
     showReviewFooter: {title: "Show footer", description:"Shows a header in the review modal."},
     showStepsInReview: {title: "Show steps", description:"Shows the steps."},
@@ -93,7 +96,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       {
         title: "Review",
         key: "FormReview",
-        properties: ["showReview","showStepsInReview","showEmptyAnswers","showReviewHeader","showReviewFooter","reviewButtonText","reviewHeaderTitle","reviewCloseButtonText"],
+        properties: getReviewProperties(obj),
       });
     return groups;
   },
@@ -168,7 +171,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     showBorder: false,
     // review stuff
     showReview: false,
-    showEmptyAnswers: false,
+    includeEmptyAnswers: false,
     showStepsInReview: false,
     showReviewHeader: false,
     showReviewFooter: false,
@@ -250,4 +253,23 @@ function getNavigationProperties(obj) {
   } else {
     return MultiStepNavigationProps;
   }
+}
+/**
+ * Retrieves the properties for the review tab
+ * @param {*} obj
+ * @returns
+ */
+function getReviewProperties(obj) {
+  const reviewPropsDisabled = ["showReview"];
+  const reviewPropsEnabled = [
+    "showReview",
+    "reviewButtonText",
+    "showStepsInReview",
+    "includeEmptyAnswers",
+    "showReviewHeader",
+    ["reviewHeaderTitle", { enabled: obj.get("showReviewHeader") }],
+    "showReviewFooter",
+    ["reviewCloseButtonText", { enabled: obj.get("showReviewFooter") }],
+  ];
+  return obj.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
 }
