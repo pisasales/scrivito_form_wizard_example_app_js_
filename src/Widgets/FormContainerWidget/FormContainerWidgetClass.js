@@ -1,42 +1,5 @@
 import * as Scrivito from "scrivito";
-const singleStepAllowedContent = [
-  "AddressWidget",
-  "BlogOverviewWidget",
-  "BoxWidget",
-  "ButtonWidget",
-  "CarouselWidget",
-  "ColumnContainerWidget",
-  "DividerWidget",
-  "EventOverviewWidget",
-  "FactWidget",
-  "FeaturePanelWidget",
-  "FormCheckboxWidget",
-  "FormDateWidget",
-  "FormHiddenFieldWidget",
-  "FormConditionalContainerWidget",
-  "FormInputFieldWidget",
-  "FormRatingWidget",
-  "FormSelectWidget",
-  "GalleryWidget",
-  "GoogleMapsWidget",
-  "GroupWidget",
-  "HeadlineWidget",
-  "IconContainerWidget",
-  "IconWidget",
-  "ImageWidget",
-  "JobOverviewWidget",
-  "LinkContainerWidget",
-  "PricingWidget",
-  "SpaceWidget",
-  "TableWidget",
-  "TestimonialSliderWidget",
-  "TextWidget",
-  "ThumbnailGalleryWidget",
-  "TickListWidget",
-  "VideoWidget",
-  "VimeoVideoWidget",
-  "YoutubeVideoWidget",
-];
+
 export const FormContainerWidget = Scrivito.provideWidgetClass(
   "FormContainerWidget",
   {
@@ -57,6 +20,14 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
       backwardButtonText: "string",
       submitButtonText: "string",
       showBorder: "boolean",
+      showReview: "boolean",
+      showEmptyAnswers: "boolean",
+      showStepsInReview: "boolean",
+      showReviewHeader: "boolean",
+      showReviewFooter: "boolean",
+      reviewButtonText:"string",
+      reviewHeaderTitle:"string",
+      reviewCloseButtonText:"string",
       singleSubmitButtonAlignment: [
         "enum",
         {
@@ -64,6 +35,6 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
         },
       ],
     },
-    extractTextAttributes: [ "steps"],
+    extractTextAttributes: ["steps"],
   }
 );

@@ -40,7 +40,15 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     submitButtonText: {
       title: "Submit button text",
     },
-    showBorder: { title: "Show as box" },
+    showBorder: { title: "Show as box", description: "Adds a border around the form if selected." },
+    showReview: { title: "Show review", description:"Shows a review button on last step for multiple steps. If clicked, a modal with answers will be shown." },
+    showEmptyAnswers: {title: "Show empty answers", description:"Shows also empty answers if selected."},
+    showReviewHeader: {"title": "Show header", description:"Shows a header in the review modal."},
+    showReviewFooter: {title: "Show footer", description:"Shows a header in the review modal."},
+    showStepsInReview: {title: "Show steps", description:"Shows the steps."},
+    reviewButtonText: {title: "Review button text", description:"The text for the review button."},
+    reviewHeaderTitle: {title: "Header title", description: "The title for the review header."},
+    reviewCloseButtonText: {title: "Close button text",description: "The text for the close button inside the review footer."},
     singleSubmitButtonAlignment: {
       title: "Alignment",
       values: [
@@ -81,6 +89,11 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         title: "Steps",
         key: "FormSteps",
         properties: ["steps"],
+      },
+      {
+        title: "Review",
+        key: "FormReview",
+        properties: ["showReview","showStepsInReview","showEmptyAnswers","showReviewHeader","showReviewFooter","reviewButtonText","reviewHeaderTitle","reviewCloseButtonText"],
       });
     return groups;
   },
@@ -98,54 +111,54 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       new FormStepWidget({
         items: [
           new ColumnContainerWidget({
-                columns: [
-                  new ColumnWidget({
-                    colSize: 6,
-                    content: [
-                      new FormInputFieldWidget({
-                        type: "given_name",
-                        label: "First name",
-                        placeholder: "Your first name",
-                        required: true,
-                      }),
-                    ],
-                  }),
-                  new ColumnWidget({
-                    colSize: 6,
-                    content: [
-                      new FormInputFieldWidget({
-                        type: "family_name",
-                        label: "Last name",
-                        placeholder: "Your last name",
-                        required: true,
-                      }),
-                    ],
+            columns: [
+              new ColumnWidget({
+                colSize: 6,
+                content: [
+                  new FormInputFieldWidget({
+                    type: "given_name",
+                    label: "First name",
+                    placeholder: "Your first name",
+                    required: true,
                   }),
                 ],
               }),
-              new FormInputFieldWidget({
-                label: "Email",
-                placeholder: "Your email address",
-                type: "email",
-                required: true,
+              new ColumnWidget({
+                colSize: 6,
+                content: [
+                  new FormInputFieldWidget({
+                    type: "family_name",
+                    label: "Last name",
+                    placeholder: "Your last name",
+                    required: true,
+                  }),
+                ],
               }),
-              new FormInputFieldWidget({
-                type: "company",
-                label: "Company",
-                placeholder: "Your company",
-              }),
-        
-              new FormInputFieldWidget({
-                type: "custom",
-                customType: "multi_line",
-                customFieldName: "custom_message",
-                label: "Message",
-                placeholder: "Your message",
-                required: true,
-              }),
-              new TextWidget({
-                text: "<p>By submitting, you agree to the terms and conditions of our privacy policy.</p>",
-              })
+            ],
+          }),
+          new FormInputFieldWidget({
+            label: "Email",
+            placeholder: "Your email address",
+            type: "email",
+            required: true,
+          }),
+          new FormInputFieldWidget({
+            type: "company",
+            label: "Company",
+            placeholder: "Your company",
+          }),
+
+          new FormInputFieldWidget({
+            type: "custom",
+            customType: "multi_line",
+            customFieldName: "custom_message",
+            label: "Message",
+            placeholder: "Your message",
+            required: true,
+          }),
+          new TextWidget({
+            text: "<p>By submitting, you agree to the terms and conditions of our privacy policy.</p>",
+          }),
         ],
       }),
     ],
@@ -153,6 +166,15 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     backwardButtonText: "Backward",
     submitButtonText: "Submit",
     showBorder: false,
+    // review stuff
+    showReview: false,
+    showEmptyAnswers: false,
+    showStepsInReview: false,
+    showReviewHeader: false,
+    showReviewFooter: false,
+    reviewButtonText: "Review",
+    reviewHeaderTitle: "Review",
+    reviewCloseButtonText: "Close"
   },
   validations: [
     (widget) => {

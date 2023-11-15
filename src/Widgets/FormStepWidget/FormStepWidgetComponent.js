@@ -6,7 +6,8 @@ import "./FormStepWidget.scss";
 Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
   const data = getData ? getData(widget.id()) : { stepNumber: 0 };
   const items = widget.get("items");
-  const isMultiStepsWithActiveEditing = Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
+  const isMultiStepsWithActiveEditing =
+    Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
   if (!items.length) {
     return (
       <InPlaceEditingPlaceholder center>
